@@ -1,6 +1,6 @@
 
 
-import React, { useEffect } from 'react';
+import React,{useEffect} from 'react';
 import { ToastContainer } from 'react-toastify';
 import BlogForm from './BlogForm';
 import { BlogCard } from './BlogCard';
@@ -13,6 +13,7 @@ function Home() {
 
     useEffect(() => {
         fetchBlogs();
+         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

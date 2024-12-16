@@ -1,9 +1,9 @@
 import React from 'react';
-import {timeStampConversionToDateAndTime, formatTimestamp} from "../utils";
+import {formatTimestamp} from "../utils";
 import { FaEdit, FaTrash} from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 
-export const  BlogCard= ({ blog, onEdit, onDelete,user })=> {
+export const  BlogCard= ({ blog, onEdit, onDelete })=> {
     return (
         <div className="blog-card">
              <div className="d-flex justify-content-between align-items-center ">

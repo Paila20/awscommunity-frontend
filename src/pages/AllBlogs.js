@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React,{useEffect} from 'react';
 import Navbar from './Navbar';
 import { BlogCard } from './BlogCard';
 import BlogForm from './BlogForm';
@@ -11,7 +11,8 @@ function AllBlogs() {
 
     useEffect(() => {
         fetchAllBlogs();
-    }, []);
+         // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
 
     return (
         <>
