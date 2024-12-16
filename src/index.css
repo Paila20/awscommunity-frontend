@@ -1,0 +1,333 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+label{
+  font-size: 20px;
+}
+
+html,
+body{
+  /* height: 100vh; */
+  /* width: 100vw; */
+}
+
+/* body{
+  display: flex;
+  justify-content: center;
+
+} */
+.navbar {
+  width: 100vw;
+  background-color: purple;
+}
+.navbar-toggler{
+  /* width: 6%; */
+  height: 2%;
+}
+:root{
+  margin: auto;
+  height: auto;
+}
+.auth-container{
+  
+  background-color: #FFF;
+  padding: 32px 48px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+
+  box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+}
+
+.auth-container > h1{
+  margin-bottom: 20px;
+}
+
+.auth-container > form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-container div{
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-container input{
+  width: 100%;
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid black;
+}
+
+.auth-container input::placeholder{
+  font-size: 12px;
+  font-style: italic;
+}
+
+button{
+  background-color: purple;
+  border: none;
+  font-size: 15px;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.user-section{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Minimal styling for the expense list */
+.expense-list {
+  font-family: Arial, sans-serif;
+}
+
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.expense-description {
+  font-weight: bold;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 4px 7px;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+.amounts-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+}
+
+.income-amount {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.expense-amount{
+  color: #c0392b;
+  font-weight: bold;
+}
+/* Add CSS to make the blog grid, cards, and form visually appealing */
+
+/* General Styles */
+/* body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+} */
+body {
+  cursor: pointer;
+}
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* User Section */
+.user-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-section h1 {
+  margin: 0;
+}
+
+/* 
+.blog-grid {
+  display: grid;
+  grid-template-columns: (3, minmax(300px));
+  gap: 20px;
+  padding: 20px;
+} */
+
+/* Blog Card */
+.blog-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* text-align: center; */
+  box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+}
+
+.blog-card img {
+  max-width: 100%;
+  height: auto;
+  /* border-radius: 8px; */
+  margin-bottom: 15px;
+}
+
+.blog-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+}
+
+.blog-card p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #666;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+}
+
+/* Blog Form */
+.blog-form {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color:#fff;
+  padding: 30px;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+  box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+  z-index: 3000;
+  max-width: 600px;
+  width: 90%;
+}
+
+.blog-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.blog-form input,
+.blog-form textarea {
+  width: 100%;
+  padding: 10px;
+  /* margin-bottom: 15px; */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.blog-form button {
+  width: 100%;
+  background-color: purple;
+
+}
+.blog-form button:hover {
+  width: 100%;
+  background-color: green;
+
+}
+
+
+/* Overlay for Form */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.blog-card {
+  width: 700px; /* Adjust the width as needed */
+  border: 1px solid #ccc;
+  padding: 10px 0;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.image-container {
+  width: 100%;
+  height: 200px; /* Fixed height for the image */
+  overflow: hidden; /* Ensure image does not overflow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: none;
+  object-fit: cover; /* Ensures the image covers the area without stretching */
+}
+
+.error{
+  color: red;
+}
+
+input[type="file"]{
+  border-radius: 6px;
+  padding: 6px 0;
+  border: none !important;
+  color: black;
+  background-color:transparent;
+  
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  background-color: blue; 
+  color: white; 
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background-color: darkblue; 
+}
