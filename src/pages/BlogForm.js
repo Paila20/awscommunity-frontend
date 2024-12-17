@@ -1,16 +1,21 @@
 
 
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { FaTimes } from "react-icons/fa";
 
 function BlogForm({ onClose, onSubmit, blog }) {
     const [title, setTitle] = useState(blog?.title || '');
     const [content, setContent] = useState(blog?.content || '');
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState(blog?.image || '');
     const [errors, setErrors] = useState({});
     console.log(errors);
 
-   
+    useEffect(() => {
+        // If the blog already has an image, it will be preloaded in the image state
+        if (blog?.image) {
+            setImage(blog.image);
+        }
+    }, [blog]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -73,8 +78,15 @@ function BlogForm({ onClose, onSubmit, blog }) {
 
                 <label>
                     Image:
+                    {blog?.image && (
+                        <div>
+                            {/* <p style={{color:"green"}}>{blog.image}</p> */}
+                            <img src={blog.image} alt="Current Blog" style={{ maxWidth: '100px', maxHeight: '100px', objectFit: 'cover' }} />
+                        </div>
+                    )}
                     <input 
                         type="file" 
+            
                         onChange={(e) => setImage(e.target.files[0])} 
                     />
                     {errors.image && <span className="text-danger">{errors.image}</span>}

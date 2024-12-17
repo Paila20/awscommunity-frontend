@@ -3,22 +3,14 @@
   padding: 0;
   margin: 0;
 }
-
+*::-webkit-scrollbar{
+  display: none;
+}
 label{
   font-size: 20px;
 }
 
-html,
-body{
-  /* height: 100vh; */
-  /* width: 100vw; */
-}
 
-/* body{
-  display: flex;
-  justify-content: center;
-
-} */
 .navbar {
   width: 100vw;
   background-color: purple;
@@ -148,6 +140,7 @@ button{
 } */
 body {
   cursor: pointer;
+  /* overflow-y: auto; */
 }
 button {
   background-color: #007bff;
@@ -288,14 +281,14 @@ button:hover {
  
 }
 
-.image-container {
+/* .image-container {
   width: 100%;
-  height: 200px; /* Fixed height for the image */
-  overflow: hidden; /* Ensure image does not overflow */
+  height: 50%; 
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .image-container img {
   width: 100%;
@@ -330,4 +323,38 @@ input[type="file"]::-webkit-file-upload-button {
 
 input[type="file"]::-webkit-file-upload-button:hover {
   background-color: darkblue; 
+}
+/* Modal styles */
+.custom-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: red;
+}
+
+.modal-content {
+  background: green;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal-content button {
+  margin: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  opacity: 0.8;
 }

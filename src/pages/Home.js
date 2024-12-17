@@ -31,9 +31,9 @@ function Home() {
             ) :blogs.length === 0 ? (
                    <p className='text-center mt-5 pt-5'>No blogs Created Yet</p>
              ) : (
-                <div className="row px-sm-5 px-0 justify-content-center">
+                <div className="row justify-content-center">
                     {blogs.map((blog) => (
-                        <div key={blog._id} className="col-lg-4 col-md-6 col-12 mb-4 d-flex justify-content-center">
+                        <div key={blog._id} className=" col-12 mb-4 d-flex justify-content-center">
                             <BlogCard
                                 blog={blog}
                                 onEdit={() => {
