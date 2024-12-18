@@ -100,8 +100,8 @@ function Login() {
                  {errors.password && <p className="text-danger">{errors.password}</p>}
                 </div>
                 <button type='submit' >Login</button>
-                <span>Does't have an account ?
-                    <Link to="/signup" style={{color:"purple"}}>Signup</Link>
+                <span className='text-center'>Does't have an account ?
+                    <Link to="/signup" style={{color:"green"}} className='text-bold-600'>Signup</Link>
                 </span>
             </form>
             <ToastContainer />
