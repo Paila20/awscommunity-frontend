@@ -72,7 +72,7 @@ function Signup() {
         }
     }
     return (
-        <div className='auth-container d-flex flex-column align-items-center justify-content-center mt-5 pb-5'>
+        <div className='auth-container d-flex flex-column align-items-center justify-content-center my-5 '>
             <h1>Signup</h1>
             <form onSubmit={handleSignup}>
                 <div>
@@ -111,7 +111,7 @@ function Signup() {
                 </div>
                 <button type='submit'>Signup</button>
                 <span>Already have an account ?
-                    <Link to="/login">Login</Link>
+                    <Link to="/login" style={{color:"purple"}}>Login</Link>
                 </span>
             </form>
             <ToastContainer />

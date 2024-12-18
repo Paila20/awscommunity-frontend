@@ -74,7 +74,7 @@ function Login() {
     }
 
     return (
-        <div className='auth-container d-flex flex-column align-items-center justify-content-center mt-5 pb-5'style={{marginTop:"150px"}}>
+        <div className='auth-container d-flex flex-column align-items-center justify-content-center mb-3 'style={{marginTop:"6rem"}}>
             <h1>Login</h1>
             <form onSubmit={handleLogin}>
                 <div>
@@ -99,9 +99,9 @@ function Login() {
                     />
                  {errors.password && <p className="text-danger">{errors.password}</p>}
                 </div>
-                <button type='submit'>Login</button>
+                <button type='submit' >Login</button>
                 <span>Does't have an account ?
-                    <Link to="/signup">Signup</Link>
+                    <Link to="/signup" style={{color:"purple"}}>Signup</Link>
                 </span>
             </form>
             <ToastContainer />

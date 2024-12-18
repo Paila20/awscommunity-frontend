@@ -2,6 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+
 }
 *::-webkit-scrollbar{
   display: none;
@@ -10,7 +11,9 @@ label{
   font-size: 20px;
 }
 
-
+body{
+  background-image: url("https://wallpaperaccess.com/full/4633128.jpg");
+}
 .navbar {
   width: 100vw;
   background-color: purple;
@@ -19,19 +22,21 @@ label{
   /* width: 6%; */
   height: 2%;
 }
-:root{
+/* :root{
   margin: auto;
   height: auto;
-}
+  background-image: url("https://wallpaperaccess.com/full/4633128.jpg");
+} */
 .auth-container{
   
-  background-color: #FFF;
-  padding: 32px 48px;
+  /* background-color: #FFF; */
+  padding: 25px 48px;
+  color: white;
   border-radius: 10px;
   width: 100%;
   max-width: 400px;
   margin: auto;
-
+  background-image: url("https://img.freepik.com/free-vector/abstract-splashed-watercolor-textured-background_53876-8753.jpg?t=st=1734439248~exp=1734442848~hmac=943e29a62e4681d4d479ba9055bcf4f60b5d49d2c24a31d0dfe1ad70d283ea5e&w=740");
   box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
 }
 
@@ -142,8 +147,8 @@ body {
   cursor: pointer;
   /* overflow-y: auto; */
 }
-button {
-  background-color: #007bff;
+.auth-container button {
+  background-color: purple;
   color: #fff;
   border: none;
   padding: 8px 12px;
@@ -152,8 +157,8 @@ button {
   margin: 5px;
 }
 
-button:hover {
-  background-color: #0056b3;
+.auth-container button:hover {
+  background-color: green;
 }
 
 /* User Section */
@@ -170,15 +175,7 @@ button:hover {
   margin: 0;
 }
 
-/* 
-.blog-grid {
-  display: grid;
-  grid-template-columns: (3, minmax(300px));
-  gap: 20px;
-  padding: 20px;
-} */
 
-/* Blog Card */
 .blog-card {
   background-color: #fff;
   border-radius: 8px;
@@ -220,16 +217,18 @@ button:hover {
 /* Blog Form */
 .blog-form {
   position: fixed;
+  color: white;
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color:#fff;
+  /* background-color:#fff; */
   padding: 30px;
   border-radius: 8px;
   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
   box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
   z-index: 3000;
   max-width: 600px;
+  background-image: url("https://img.freepik.com/free-vector/abstract-splashed-watercolor-textured-background_53876-8753.jpg?t=st=1734439248~exp=1734442848~hmac=943e29a62e4681d4d479ba9055bcf4f60b5d49d2c24a31d0dfe1ad70d283ea5e&w=740");
   width: 90%;
 }
 
@@ -278,6 +277,7 @@ button:hover {
   margin: 10px 0;
   display: flex;
   flex-direction: column;
+  background-color:  #dcd0ff ;
  
 }
 
@@ -305,7 +305,7 @@ input[type="file"]{
   border-radius: 6px;
   padding: 6px 0;
   border: none !important;
-  color: black;
+  color: white;
   background-color:transparent;
   
 }

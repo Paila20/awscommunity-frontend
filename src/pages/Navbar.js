@@ -15,18 +15,18 @@ const Navbar = ({setShowBlogForm}) => {
     <div>
        <nav className="navbar navbar-expand-lg  bg-purple px-md-5 px-0 fixed-top">
         <div className="container-fluid px-md-5 px-0  mx-sm-4 mx-2 text-white">
-            <p className='fs-4 cursor-pointer'>  Blog App</p>
+            <p className='fs-4 cursor-pointer hover:text-purple-500 transition-colors duration-300' onClick={() => navigate("/allblogs")}>  Blog App</p>
           
             <button className="navbar-toggler bg-white me-3 "  type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav ms-auto flex-column flex-lg-row">
-                <li className="nav-item cursor-pointer"  onClick={() => navigate("/allblogs")}>
+                <li className="nav-item cursor-pointer hover:text-orange-500 transition-colors duration-300"  onClick={() => navigate("/allblogs")}>
                         <span className="nav-link text-white">Blogs</span>
                     </li>
                     
-                    <li className="nav-item  mx-lg-3 my-3 my-lg-0 cursor-pointer"  onClick={() => navigate("/home")}>
+                    <li className="nav-item  mx-lg-3 my-3 my-lg-0 cursor-pointer hover:text-orange-500 transition-colors duration-300"  onClick={() => navigate("/home")}>
                         <span className="nav-link text-white ">My Blogs</span>
                     </li>
                     
