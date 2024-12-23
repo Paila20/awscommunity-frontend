@@ -1,9 +1,11 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { FaUserCircle } from "react-icons/fa";
+import { FiMenu, FiX } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { handleSuccess} from '../utils';
 
 const Navbar = ({setShowBlogForm}) => {
+    const [isToggled, setIsToggled] = useState(false);
      const handleLogout = () => {
             localStorage.removeItem('token');
             localStorage.removeItem('loggedInUser');
@@ -11,16 +13,19 @@ const Navbar = ({setShowBlogForm}) => {
             navigate('/login');
         };
      const navigate = useNavigate();
+     const toggleNavbar = () => {
+        setIsToggled(!isToggled);
+    };
   return (
     <div>
-       <nav className="navbar navbar-expand-lg  bg-purple px-md-5 px-0 fixed-top">
-        <div className="container-fluid px-md-5 px-0  mx-sm-4 mx-2 text-white">
+       <nav className="navbar navbar-expand-lg  bg-purple px-lg-5 px-0 fixed-top pt-3">
+        <div className="container-fluid mx-sm-4 mx-2 text-white">
             <p className='fs-4 cursor-pointer hover:text-purple-500 transition-colors duration-300' onClick={() => navigate("/allblogs")}>  Blog App</p>
           
-            <button className="navbar-toggler bg-white me-3 "  type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
+            <button className=" d-lg-none mb-2"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded={isToggled} aria-label="Toggle navigation"   onClick={toggleNavbar}>
+            {isToggled ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
+            <div  className={`collapse navbar-collapse ${isToggled ? "show" : ""}`}  id="navbarNav">
                 <ul className="navbar-nav ms-auto flex-column flex-lg-row">
                 <li className="nav-item cursor-pointer hover:text-orange-500 transition-colors duration-300"  onClick={() => navigate("/allblogs")}>
                         <span className="nav-link text-white">Blogs</span>

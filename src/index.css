@@ -18,15 +18,7 @@ body{
   width: 100vw;
   background-color: purple;
 }
-.navbar-toggler{
-  /* width: 6%; */
-  height: 2%;
-}
-/* :root{
-  margin: auto;
-  height: auto;
-  background-image: url("https://wallpaperaccess.com/full/4633128.jpg");
-} */
+
 .auth-container{
   
   /* background-color: #FFF; */
@@ -35,6 +27,7 @@ body{
   border-radius: 10px;
   width: 100%;
   max-width: 400px;
+  height: 100%;
   margin: auto;
   background-image: url("https://img.freepik.com/free-vector/abstract-splashed-watercolor-textured-background_53876-8753.jpg?t=st=1734439248~exp=1734442848~hmac=943e29a62e4681d4d479ba9055bcf4f60b5d49d2c24a31d0dfe1ad70d283ea5e&w=740");
   box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
