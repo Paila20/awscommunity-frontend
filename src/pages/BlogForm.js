@@ -11,7 +11,7 @@ function BlogForm({ onClose, onSubmit, blog }) {
     console.log(errors);
 
     useEffect(() => {
-        // If the blog already has an image, it will be preloaded in the image state
+      
         if (blog?.image) {
             setImage(blog.image);
         }

@@ -18,29 +18,34 @@ body{
   width: 100vw;
   background-color: purple;
 }
-
+:root{
+  margin-top: 50px;
+}
 .auth-container{
   
   /* background-color: #FFF; */
-  padding: 25px 48px;
+  /* padding: 25px 48px; */
   color: white;
   border-radius: 10px;
   width: 100%;
   max-width: 400px;
-  height: 100%;
+  height: auto;
   margin: auto;
+  margin-bottom: -800px;
   background-image: url("https://img.freepik.com/free-vector/abstract-splashed-watercolor-textured-background_53876-8753.jpg?t=st=1734439248~exp=1734442848~hmac=943e29a62e4681d4d479ba9055bcf4f60b5d49d2c24a31d0dfe1ad70d283ea5e&w=740");
   box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+  /* z-index: 5000; */
+  position: relative;
 }
 
 .auth-container > h1{
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .auth-container > form{
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  /* gap: 10px; */
 }
 
 .auth-container div{
@@ -48,10 +53,10 @@ body{
   flex-direction: column;
 }
 
-.auth-container input{
+.auth-container input,select{
   width: 100%;
   font-size: 20px;
-  padding: 10px;
+  padding-top: 5px;
   border: none;
   outline: none;
   border-bottom: 1px solid black;
@@ -147,7 +152,7 @@ body {
   padding: 8px 12px;
   border-radius: 4px;
   cursor: pointer;
-  margin: 5px;
+  /* margin: 5px; */
 }
 
 .auth-container button:hover {
@@ -207,17 +212,17 @@ body {
 
 }
 
-/* Blog Form */
+
 .blog-form {
   position: fixed;
   color: white;
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* background-color:#fff; */
+
   padding: 30px;
   border-radius: 8px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+
   box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
   z-index: 3000;
   max-width: 600px;
@@ -252,6 +257,50 @@ body {
 
 }
 
+
+.auth-form {
+  position: relative;
+  color: white;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 30px;
+  border-radius: 8px;
+
+  box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+  z-index: 3000;
+  max-width: 600px;
+  background-image: url("https://img.freepik.com/free-vector/abstract-splashed-watercolor-textured-background_53876-8753.jpg?t=st=1734439248~exp=1734442848~hmac=943e29a62e4681d4d479ba9055bcf4f60b5d49d2c24a31d0dfe1ad70d283ea5e&w=740");
+  width: 90%;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.auth-form input,
+.auth-form textarea {
+  width: 100%;
+  padding: 10px;
+  /* margin-bottom: 15px; */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.auth-form button {
+  width: 100%;
+  background-color: purple;
+
+}
+.auth-form button:hover {
+  width: 100%;
+  background-color: green;
+
+}
 
 /* Overlay for Form */
 .overlay {
@@ -350,4 +399,23 @@ input[type="file"]::-webkit-file-upload-button:hover {
 
 .modal-content button:hover {
   opacity: 0.8;
+}
+
+.custom-dropdown-toggle::after{
+  display: none !important;
+}
+
+/* .dropdown-toggle::after {
+  display: none !important; 
+} */
+
+/* Optional: Style the button for a clean look */
+.custom-dropdown-toggle {
+  border: none;
+  background: transparent; /* Remove any default button styles */
+  padding: 0; /* Adjust padding to fit the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
 }
