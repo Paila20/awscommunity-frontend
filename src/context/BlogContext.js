@@ -25,7 +25,7 @@ export const BlogProvider = ({ children }) => {
     const [mypendingblogs, setMyPendingBlogs] = useState([]);
     const [myrejectedblogs, setMyRejectedBlogs] = useState([]);
 
-    const API_BASE_URL = 'https://backend-blogs-s8uc.onrender.com/'; 
+    const API_BASE_URL = 'https://backend-blogs-s8uc.onrender.com'; 
     const token = localStorage.getItem('token');
 
     const fetchAdminUsers = async () => {
