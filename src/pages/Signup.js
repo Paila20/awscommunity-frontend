@@ -48,7 +48,7 @@ function Signup() {
             return;
         }
         try {
-            const url = `http://localhost:5000/auth/signup`;
+            const url = `https://backend-blogs-s8uc.onrender.com/auth/signup`;
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
