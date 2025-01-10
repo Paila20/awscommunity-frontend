@@ -29,14 +29,14 @@ const Navbar = () => {
                  {isToggled ? <FiX size={24} /> : <FiMenu size={24} />}
                  </button>
                  <div  className={`collapse navbar-collapse ${isToggled ? "show" : ""}`}  id="navbarNav">
-                     <ul className="navbar-nav ms-lg-auto flex-column flex-lg-row align-items-center">
-                     <li className="nav-item cursor-pointer me-3" >
+                     <ul className="navbar-nav ms-lg-auto flex-column flex-lg-row align-items-lg-center align-items-start">
+                     <li className="nav-item cursor-pointer me-lg-3 ms-1" >
                           <span className="nav-link text-white " onClick={() => navigate("/home")}>Home</span>
                      </li>
-                     <li className="nav-item cursor-pointer hover:text-orange-500 transition-colors duration-300" >
+                     <li className="nav-item cursor-pointer hover:text-orange-500 transition-colors duration-300 " >
                              
                              <div class="dropdown">
-                                 <button class=" dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <button class=" dropdown-toggle p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                      Admin
                                     </button>
                                  <ul class="dropdown-menu">
@@ -47,10 +47,10 @@ const Navbar = () => {
                                  </div>
                          </li>
                          
-                         <li className="nav-item  mx-lg-3 my-3 my-lg-0 cursor-pointer hover:text-orange-500 transition-colors duration-300"    >
+                         <li className="nav-item  mx-lg-3  cursor-pointer hover:text-orange-500 transition-colors duration-300"    >
                             
                              <div class="dropdown">
-                                 <button class=" dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <button class=" dropdown-toggle p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                      Editor
                                     </button>
                                  <ul class="dropdown-menu">
@@ -61,7 +61,7 @@ const Navbar = () => {
                          </li>
                          
                         
-                         <li className="nav-item mx-lg-3 my-3 my-lg-0 g-3 cursor-pointer">
+                         <li className="nav-item mx-lg-3  py-1 g-3 cursor-pointer">
                              <span className="nav-link text-white"> <FaUserCircle size={30} className='pe-1'/>{localStorage.getItem("loggedInUser")}</span>
                          </li>
                         
@@ -82,16 +82,16 @@ const Navbar = () => {
                 {isToggled ? <FiX size={24} /> : <FiMenu size={24} />}
                 </button>
                 <div  className={`collapse navbar-collapse ${isToggled ? "show" : ""}`}  id="navbarNav">
-                    <ul className="navbar-nav ms-auto flex-column flex-lg-row">
+                    <ul className="navbar-nav ms-auto flex-column flex-lg-row align-items-lg-center">
                    
                           <li className="nav-item cursor-pointer me-3" >
                           <span className="nav-link text-white " onClick={() => navigate("/home")}>Home</span>
                           </li>
                       
-                        <li className="nav-item  mx-lg-3 my-3 my-lg-0 cursor-pointer hover:text-orange-500 transition-colors duration-300"    >
+                        <li className="nav-item  mx-lg-3 mx-0  cursor-pointer hover:text-orange-500 transition-colors duration-300"    >
                       
                             <div class="dropdown">
-                                <button class=" dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class=" dropdown-toggle px-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     My Blogs
                                    </button>
                                 <ul class="dropdown-menu">
@@ -106,12 +106,12 @@ const Navbar = () => {
                         </li>
                         
                        
-                        <li className="nav-item mx-lg-3 my-3 my-lg-0 g-3 cursor-pointer">
+                        <li className="nav-item mx-lg-3  g-3 cursor-pointer">
                             <span className="nav-link text-white"> <FaUserCircle size={30} className='pe-1'/>{localStorage.getItem("loggedInUser")}</span>
                         </li>
                        
                        
-                        <li className="nav-item cursor-pointer ">
+                        <li className="nav-item cursor-pointer py-2 py-lg-0 ">
                             <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
                         </li>
                     </ul>
