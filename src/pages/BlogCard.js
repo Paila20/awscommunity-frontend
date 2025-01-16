@@ -8,6 +8,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { Modal, Button } from 'react-bootstrap';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { useBlog } from '../context/BlogContext';
+import DOMPurify from 'dompurify';
 
 
 export const BlogCard = ({ blog, onEdit, onDelete }) => {
@@ -87,7 +88,8 @@ export const BlogCard = ({ blog, onEdit, onDelete }) => {
             </div>
 
             <h3 className='ms-3 mt-2'>{blog.title}</h3>
-            <p className='ms-3'>{blog.content}</p>
+            {/* <p className='ms-3'>{blog.content}</p> */}
+            <p className='ms-3' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.content) }} />
 
             {/* Modal */}
             <Modal show={showModal} onHide={handleClose}>

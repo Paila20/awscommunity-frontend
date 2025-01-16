@@ -21,7 +21,7 @@ function AdminBlogs() {
         <>
             <Navbar setShowBlogForm={setShowBlogForm} />
             <div className="container mt-5 pt-5">
-           <div className='d-flex justify-content-around '>
+           <div className='d-flex justify-content-between justify-content-lg-around '>
             <h1 className='text-center' style={{color:"green"}}>All Blogs</h1>
             <button className="btn btn-success" onClick={() => setShowBlogForm(true)}>Create Blog</button>
             </div>

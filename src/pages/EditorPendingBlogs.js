@@ -8,6 +8,7 @@ import { formatTimestamp } from "../utils";
 import { FaUserCircle } from "react-icons/fa";
 import { Modal, Button } from 'react-bootstrap';
 import { FiMoreHorizontal } from 'react-icons/fi';
+import DOMPurify from 'dompurify';
 
 function EditorPendingBlogs() {
     const { editorpendingblogs,  fetchEditorPendingBlogs,loading,updateEditorBlogStatus,setLoading} = useBlog();
@@ -81,7 +82,9 @@ function EditorPendingBlogs() {
             </div>
 
             <h3 className='ms-3 mt-2'>{blog.title}</h3>
-            <p className='ms-3'>{blog.content}</p>
+            {/* <p className='ms-3'>{blog.content}</p> */}
+            <p className='ms-3' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.content) }} />
+
 
            
             <Modal show={showModal} onHide={handleClose}>

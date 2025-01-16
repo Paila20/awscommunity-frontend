@@ -177,27 +177,27 @@ const UserManagement = () => {
         </div>
         <div className="card-body p-md-2 p-0">
           <table className="table table-striped table-bordered">
-            <thead className="table-light">
-              <tr>
+            <thead className="table-light text-center">
+              <tr >
              
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Actions</th>
+                <th className="px-sm-3 px-0">Name</th>
+                <th className="px-sm-3 px-0">Email</th>
+                <th className="px-sm-3 px-0">Role</th>
+                <th className="px-sm-3 px-0">Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center">
               {adminusers.length > 0 ? (
                 adminusers.map((user) => (
                   <tr key={user._id}>
                   
-                    <td>{user.name}</td>
-                    <td className="word-wrap">{user.email}</td>
-                    <td>{user.role}</td>
-                    <td>
+                    <td className="pt-sm-3 px-0">{user.name}</td>
+                    <td className="word-wrap word-break pt-sm-3 px-0">{user.email}</td>
+                    <td className="pt-sm-3 px-0">{user.role}</td>
+                    <td className="pt-sm-2 px-0">
                      
                       <button
-                        className="btn btn-danger btn-sm"
+                        className="btn btn-danger p-0 p-sm-2"
                         onClick={() => deleteAdminUser(user._id)}
                       >
                         Delete

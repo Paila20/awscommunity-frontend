@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../utils';
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX} from "react-icons/fi";
 
 function Signup() {
     const [isToggled, setIsToggled] = useState(false);
+    // const [showPassword, setShowPassword] = useState(false);
     const [signupInfo, setSignupInfo] = useState({
         name: '',
         email: '',
@@ -76,6 +77,7 @@ function Signup() {
     }
     return (
         <div className='container'>
+            <div>
              <nav className="navbar navbar-expand-lg  bg-purple px-lg-5 px-0 fixed-top pt-3 z-1 mb-5">
              <div className="container-fluid mx-sm-4 mx-2 text-white">
              <p className='fs-4 cursor-pointer hover:text-purple-500 transition-colors duration-300' onClick={() => navigate("/home")}>  Blog App</p>
@@ -121,13 +123,22 @@ function Signup() {
                 </div>
                 <div>
                     <label htmlFor='password'>Password</label>
-                    <input
+                    <div className='d-flex '>
+                    <input 
                         onChange={handleChange}
                         type='password'
                         name='password'
                         placeholder='Enter your password...'
                         value={signupInfo.password}
+                        className='position-relative'
                     />
+                     {/* <span
+                            className='position-absolute top-50 end-0 translate-middle-y cursor-pointer me-3'
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? <FiEyeOff /> : <FiEye />}
+                        </span> */}
+                        </div>
                      {errors.password && <p className="text-danger">{errors.password}</p>}
                 </div>
                 <div>
@@ -150,6 +161,7 @@ function Signup() {
                 </span>
             </form>
             <ToastContainer />
+        </div>
         </div>
         </div>
     )

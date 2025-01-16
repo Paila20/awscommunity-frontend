@@ -8,6 +8,7 @@ import { useBlog } from '../context/BlogContext';
 import { formatTimestamp } from "../utils";
 import { FiMenu, FiX } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
+import DOMPurify from 'dompurify';
 
 
 function PublicBlogs() {
@@ -92,7 +93,8 @@ function PublicBlogs() {
                                     </div>
 
                                     <h3 className='ms-3 mt-2'>{blog.title}</h3>
-                                    <p className='ms-3'>{blog.content}</p>
+                                    {/* <p className='ms-3'>{blog.content}</p> */}
+                                    <p className='ms-3' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.content) }} />
 
            
            

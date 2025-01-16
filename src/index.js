@@ -6,6 +6,9 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import 'react-toastify/ReactToastify.css';
 
+import 'react-quill/dist/quill.snow.css';
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

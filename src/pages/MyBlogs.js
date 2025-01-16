@@ -23,7 +23,7 @@ function MyBlogs() {
         <>
             <Navbar />
             <div className="container mt-5 pt-5">
-                <div className='d-flex justify-content-around '>
+                <div className='d-flex justify-content-between justify-content-lg-around '>
             <h1 className='' style={{color:"green"}}>My Blogs</h1>
             {role === "Editor"?( <button className="btn btn-success" onClick={() => setShowBlogForm(true)}>Create Blog</button>):("")}
             </div>

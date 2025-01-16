@@ -7,6 +7,7 @@ import Navbar from './Navbar';
 import { formatTimestamp } from "../utils";
 import { FaUserCircle } from "react-icons/fa";
 import { useBlog } from '../context/BlogContext';
+import DOMPurify from 'dompurify';
 
 function MyBlogs() {
     const { myrejectedblogs, fetchMyRejectedBlogs, loading,setLoading} = useBlog();
@@ -66,7 +67,9 @@ function MyBlogs() {
                                         </div>
                             
                                         <h3 className='ms-3 mt-2'>{blog.title}</h3>
-                                        <p className='ms-3'>{blog.content}</p>
+                                        {/* <p className='ms-3'>{blog.content}</p> */}
+                                        <p className='ms-3' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.content) }} />
+                                        
                                         </div>
                                         </div>
                         </div>

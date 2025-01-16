@@ -31,6 +31,8 @@ body{
   max-width: 400px;
   height: auto;
   margin: auto;
+  top: 50%;
+  /* left: 50%; */
   margin-bottom: -800px;
   background-image: url("https://img.freepik.com/free-vector/abstract-splashed-watercolor-textured-background_53876-8753.jpg?t=st=1734439248~exp=1734442848~hmac=943e29a62e4681d4d479ba9055bcf4f60b5d49d2c24a31d0dfe1ad70d283ea5e&w=740");
   box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
@@ -220,7 +222,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 
-  padding: 30px;
+  padding: 10px;
   border-radius: 8px;
 
   box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
@@ -236,14 +238,19 @@ body {
   font-weight: bold;
 }
 
-.blog-form input,
-.blog-form textarea {
+.blog-form input
+ {
   width: 100%;
   padding: 10px;
   /* margin-bottom: 15px; */
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
+}
+
+.blog-form input::placeholder{
+  font-size: 12px;
+  font-style: italic;
 }
 
 .blog-form button {
@@ -256,6 +263,14 @@ body {
   background-color: green;
 
 }
+
+.react-quill .ql-editor {
+  /* background-color: white; */
+  color: black;
+  height: 150px; 
+  padding: 10px; 
+}
+
 
 
 .auth-form {

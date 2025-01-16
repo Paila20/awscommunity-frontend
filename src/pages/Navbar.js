@@ -92,13 +92,13 @@ const Navbar = () => {
                       
                             <div class="dropdown">
                                 <button class=" dropdown-toggle px-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    My Blogs
+                                     Blogs
                                    </button>
                                 <ul class="dropdown-menu">
                                     <li onClick={() => navigate("/myblogs")}>My Blogs</li>
                                     <li onClick={() => navigate("/mypendingblogs")}>Pending</li>
                                     <li onClick={() => navigate("/myrejectedblogs")}>Rejected</li>
-                                    <li>Published</li>
+                                  
                                    
                                    
                                 </ul>
