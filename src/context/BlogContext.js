@@ -13,423 +13,94 @@ export const useBlog = () => {
 };
 
 export const BlogProvider = ({ children }) => {
-    const [adminusers, setAdminUsers] = useState([])
+  
     const [loading, setLoading] = useState(false);
-    const [publicblogs,setPublicBlogs] = useState([]);
-    const [adminblogs, setAdminBlogs] = useState([]);
-    const [editorblogs, setEditorBlogs] = useState([]);
-    const [editorpendingblogs, setEditorPendingBlogs] = useState([]);
-    const [editingBlog, setEditingBlog] = useState(null);
-    const [showBlogForm, setShowBlogForm] = useState(false);
-    const [myblogs, setMyBlogs] = useState([]);
-    const [mypendingblogs, setMyPendingBlogs] = useState([]);
-    const [myrejectedblogs, setMyRejectedBlogs] = useState([]);
-
-    const API_BASE_URL = 'https://backend-blogs-s8uc.onrender.com'; 
+    const [message, setMessage] = useState(null);
+    const [entries, setEntries] = useState([]); 
+    const API_BASE_URL = 'https://awscommunity-backend.onrender.com/api'; 
     // const API_BASE_URL = 'http://localhost:5000';
     const token = localStorage.getItem('token');
-
-    const fetchAdminUsers = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get(`${API_BASE_URL}/admin/users`, {
-                headers: {
-                    Authorization: `Bearer ${token}`, 
-                },
-            });
-            setAdminUsers(response.data);
-        } catch (error) {
-            handleError('Error fetching users:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-    const createAdminUser = async (userData) => {
-        setLoading(true);
-        try {
-            const response = await axios.post(`${API_BASE_URL}/admin/users`, userData, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`, 
-                },
-            });
-            setAdminUsers((prevUsers) => [...prevUsers, response.data.user]);
-            handleSuccess('User created successfully!');
-        } catch (error) {
-            handleError('Error creating user:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-    const deleteAdminUser = async (id) => {
-        setLoading(true);
-        try {
-            await axios.delete(`${API_BASE_URL}/admin/users/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`, 
-                },
-            });
-            setAdminUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
-            handleSuccess('User deleted successfully!');
-        } catch (error) {
-            handleError('Error deleting user:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-    
   
-   
-    const fetchPublicBlogs = async () => {
-        setLoading(true);
-        try {
-          
-            const response = await axios.get(`${API_BASE_URL}/public/blogs/published`);
-        console.log(response)
-            setPublicBlogs(response.data);
-           
-        } catch (error) {
-            handleError('Error fetching blogs:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const fetchAdminBlogs = async () => {
-        setLoading(true);
-        try {
-          console.log(token)
-            const response = await axios.get(`${API_BASE_URL}/admin/blogs/draft`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`, 
-                    },
+const submitContactForm = async (formData) => {
+    setLoading(true);
+    try {
+        const response = await axios.post(`${API_BASE_URL}/join-us`, formData, {
+            headers: {
+                "Content-Type": "application/json",
+            },
         });
-        console.log(response)
-            setAdminBlogs(response.data);
-           
-        } catch (error) {
-            handleError('Error fetching blogs:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
+        console.log("Contact Form Submitted:", response.data);
+        setMessage(response.data.message); // Update state with success message
+        handleSuccess("Form Submitted Successfully")
+    } catch (error) {
+        console.error("Contact Form Error:", error);
+        setMessage("Failed to submit form"); // Update state with error message
+    } finally {
+        setLoading(false);
+    }
+};
 
-    const fetchMyBlogs = async () => {
-        setLoading(true);
-        try {
-          console.log(token)
-            const response = await axios.get(`${API_BASE_URL}/editor/blogs/draft`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`, 
-                    },
+ // ✅ Fetch All "Join Us" Form Entries (Admin Only)
+ const fetchAllEntries = async () => {
+    const token = localStorage.getItem("token"); // Get the token inside the function
+
+    if (!token) {
+        console.error("No token found");
+        handleError("Unauthorized: No token found");
+        setLoading(false);
+        return;
+    }
+    setLoading(true);
+    try {
+        const response = await axios.get(`${API_BASE_URL}/join-us/all`, {
+            headers: { Authorization: `Bearer ${token}` },
         });
-        console.log(response)
-            setMyBlogs(response.data);
+        console.log("Fetched Entries:", response.data);
+        setEntries(response.data);
+        handleSuccess("Entries fetched successfully");
+    } catch (error) {
+        console.error("Fetch Entries Error:", error);
+        handleError("Failed to fetch entries");
+    } finally {
+        setLoading(false);
+    }
+};
 
-        } catch (error) {
-            handleError('Error fetching blogs:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
+// ✅ Delete a "Join Us" Form Entry by ID (Admin Only)
+const deleteEntry = async (entryId) => {
+    setLoading(true);
+    const token = localStorage.getItem("token"); // Get the token inside the function
 
-    const fetchMyPendingBlogs = async () => {
-        setLoading(true);
-        try {
-          console.log(token)
-            const response = await axios.get(`${API_BASE_URL}/editor/blogs/pending`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+    if (!token) {
+        console.error("No token found");
+        handleError("Unauthorized: No token found");
+        setLoading(false);
+        return;
+    }
+    try {
+        await axios.delete(`${API_BASE_URL}/join-us/${entryId}`, {
+            headers: { Authorization: `Bearer ${token}` },
         });
-        console.log(response)
-            setMyPendingBlogs(response.data);
-            
-        } catch (error) {
-            handleError('Error fetching blogs:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
+        setEntries(entries.filter(entry => entry._id !== entryId)); // Update UI
+        handleSuccess("Entry deleted successfully");
+    } catch (error) {
+        console.error("Delete Entry Error:", error);
+        handleError("Failed to delete entry");
+    } finally {
+        setLoading(false);
+    }
+};
+
     
-
-    const fetchMyRejectedBlogs = async () => {
-        setLoading(true);
-        try {
-          console.log(token)
-            const response = await axios.get(`${API_BASE_URL}/editor/blogs/rejected`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`, 
-                    },
-        });
-        console.log(response)
-            setMyRejectedBlogs(response.data);
-           
-        } catch (error) {
-            handleError('Error fetching blogs:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-   
-    const createAdminBlog = async (blogData) => {
-        setLoading(true);
-        try {
-           
-
-            const response = await axios.post(`${API_BASE_URL}/admin/blogs`, blogData, {
-                headers: { 'Content-Type': 'multipart/form-data' ,
-                    Authorization: `Bearer ${token}`, 
-                },
-            });
-            console.log(response.data.blog)
-            setAdminBlogs((prevBlogs) => [...prevBlogs, response.data.blog]);
-            handleSuccess('Blog created successfully!');
-            setShowBlogForm(false);
-             setEditingBlog(null);
-        } catch (error) {
-            handleError('Error creating blog:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-
-    const updateAdminBlog = async (id, blogData) => {
-        setLoading(true);
-        try {
-          
-
-            const response = await axios.put(`${API_BASE_URL}/admin/blogs/${id}`, blogData, {
-                headers: { 'Content-Type': 'multipart/form-data',
-                    Authorization: `Bearer ${token}`, 
-                 },
-            });
-            setAdminBlogs((prevBlogs) =>
-                prevBlogs.map((blog) => (blog._id === id ? response.data.blog : blog))
-            );
-            handleSuccess('Blog updated successfully!');
-            setShowBlogForm(false);
-             setEditingBlog(null);
-        } catch (error) {
-            handleError('Error updating blog:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-   
-    const deleteAdminBlog = async (id) => {
-        setLoading(true);
-        try {
-            await axios.delete(`${API_BASE_URL}/admin/blogs/${id}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`, 
-                    },
-         });
-            setAdminBlogs((prevBlogs) => prevBlogs.filter((blog) => blog._id !== id));
-            handleSuccess('Blog deleted successfully!');
-        } catch (error) {
-            handleError('Error deleting blog:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-     
-
-     
-      const fetchEditorBlogs = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get(`${API_BASE_URL}/editor/blogs`,
-                 {
-                    headers: {
-                        Authorization: `Bearer ${token}`, 
-                    },
-
-             } );
-            setEditorBlogs(response.data);
-           
-        } catch (error) {
-            handleError('Error fetching blogs:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-    const fetchEditorPendingBlogs = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get(`${API_BASE_URL}/editor/blogs/allpending`,
-                 {
-                    headers: {
-                        Authorization: `Bearer ${token}`, 
-                    },
-
-             } );
-            setEditorPendingBlogs(response.data);
-         
-        } catch (error) {
-            handleError('Error fetching blogs:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    // Create Blog
-    const createMyBlog = async (blogData) => {
-        setLoading(true);
-        try {
-           
-
-            const response = await axios.post(`${API_BASE_URL}/editor/blogs`, blogData, {
-                headers: { 'Content-Type': 'multipart/form-data' ,
-                    Authorization: `Bearer ${token}`, 
-                },
-
-            });
-            setMyBlogs((prevBlogs) => [...prevBlogs, response.data.blog]);
-            handleSuccess('Blog created successfully!');
-            setShowBlogForm(false);
-             setEditingBlog(null);
-        } catch (error) {
-            handleError('Error creating blog:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    // Update Blog
-    const updateMyBlog = async (id, blogData) => {
-        setLoading(true);
-        try {
-
-            const response = await axios.put(`${API_BASE_URL}/editor/blogs/${id}`, blogData, {
-                headers: { 'Content-Type': 'multipart/form-data',
-                    Authorization: `Bearer ${token}`, 
-                 },
-            });
-            setMyBlogs((prevBlogs) =>
-                prevBlogs.map((blog) => (blog._id === id ? response.data.blog : blog))
-            );
-            handleSuccess('Blog updated successfully!');
-            setShowBlogForm(false);
-             setEditingBlog(null);
-        } catch (error) {
-            handleError('Error updating blog:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    // Delete Blog
-    const deleteMyBlog = async (id) => {
-        setLoading(true);
-        try {
-            await axios.delete(`${API_BASE_URL}/editor/blogs/${id}`);
-            setMyBlogs((prevBlogs) => prevBlogs.filter((blog) => blog._id !== id));
-            handleSuccess('Blog deleted successfully!');
-        } catch (error) {
-            handleError('Error deleting blog:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-   
-     const updateEditorBlogStatus = async (blogId, status) => {
-        try {
-          const response = await axios.patch(`${API_BASE_URL}/editor/blogs/${blogId}/status`, 
-            { status },
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`, 
-                    'Content-Type': 'application/json',
-                },
-            },
-           );
-          return response.data; // Return the API response
-        } catch (error) {
-          console.error('Error updating blog status:', error.response?.data || error.message);
-          throw error;
-        }
-      };
-
-      const updateAdminBlogStatus = async (blogId, status) => {
-        try {
-          const response = await axios.patch(`${API_BASE_URL}/admin/blogs/${blogId}/status`, 
-            { status },
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`, // Include the token
-                },
-            },
-           );
-          return response.data; // Return the API response
-        } catch (error) {
-          console.error('Error updating blog status:', error.response?.data || error.message);
-          throw error;
-        }
-      };
-
-
-       
-      const sendBlogForApproval = async (blogId) => {
-        try {
-          const response = await axios.patch(`${API_BASE_URL}/editor/blogs/${blogId}/send-for-approval`,
-            {},
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`, // Include the token
-                },
-            },
-          );
-          return response.data; // Return the API response
-        } catch (error) {
-          console.error('Error sending blog for approval:', error.response?.data || error.message);
-          throw error;
-        }
-      }; 
     return (
         <BlogContext.Provider
             value={{
                 loading,
-                adminblogs,
-                editorblogs,
-                fetchAdminBlogs,
-                createAdminBlog,
-                updateAdminBlog,
-                deleteAdminBlog,
-                setEditingBlog,
-                editingBlog,
-                showBlogForm,
-                setShowBlogForm,
-                fetchEditorBlogs,
-                createMyBlog,
-                updateMyBlog,
-                deleteMyBlog,
-                updateEditorBlogStatus,
-                updateAdminBlogStatus,
-                sendBlogForApproval,
-                myblogs,
-                fetchMyBlogs,
-                editorpendingblogs,
-                fetchEditorPendingBlogs,
-                publicblogs,
-                fetchPublicBlogs,
-                setLoading,
-                adminusers,
-                fetchAdminUsers,
-                createAdminUser,
-                deleteAdminUser,
-                mypendingblogs,
-                fetchMyPendingBlogs,
-                myrejectedblogs,
-                fetchMyRejectedBlogs
+                submitContactForm,
+                message,
+                entries,
+                fetchAllEntries,
+                deleteEntry,
             }} 
         >
             {children}

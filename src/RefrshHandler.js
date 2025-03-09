@@ -1,33 +1,92 @@
-// import  { useEffect } from 'react'
-// import { useLocation, useNavigate } from 'react-router-dom'
 
-// function RefrshHandler({ setIsAuthenticated }) {
-//     const location = useLocation();
-//     const navigate = useNavigate();
-//     const role = localStorage.getItem('role'); 
-//     useEffect(() => {
-//         if (localStorage.getItem('token')) {
-//             setIsAuthenticated(true);
-//             if (location.pathname === '/' ||
-//                 location.pathname === '/login' ||
-//                 location.pathname === '/signup'
-//             ) {
-//                 // navigate('/adminblogs', { replace: false });
-//                 if (role === 'Admin') {
-//                     navigate('/adminblogs', { replace: false });
-//                   } else if (role === 'Editor') {
-//                     navigate('/blogs', { replace: false });
-//                   }
-//             }
-//         }
-//     }, [location, navigate, setIsAuthenticated])
+// import { useEffect } from 'react';
+// import { useLocation, useNavigate } from 'react-router-dom';
 
-//     return (
-//         null
-//     )
+// function RefreshHandler({ setIsAuthenticated }) {
+//   const location = useLocation();
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const token = localStorage.getItem('token');
+//     const role = localStorage.getItem('role');
+
+//     if (token) {
+//       setIsAuthenticated(true);
+
+//       // Redirect based on role
+//       if (location.pathname === '/' || location.pathname.startsWith('/admin')) {
+//         if (role?.toLowerCase() === 'admin') {
+//           navigate('/admin/admindashboard', { replace: true });
+//         } 
+//       }
+//     }
+//   }, [location, navigate, setIsAuthenticated]);
+
+//   return null;
 // }
 
-// export default RefrshHandler
+// export default RefreshHandler;
+
+// import { useEffect } from 'react';
+// import { useLocation, useNavigate } from 'react-router-dom';
+
+// function RefreshHandler({ setIsAuthenticated }) {
+//   // const location = useLocation();
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const token = localStorage.getItem('token');
+//     const role = localStorage.getItem('role');
+
+   
+
+//     if (token) {
+//       setIsAuthenticated(true);
+
+//       if (role && role.toLowerCase() === 'admin') {
+       
+
+//         setTimeout(() => {
+//           navigate('/admin/admindashboard', { replace: true });
+         
+//         }, 100); // Small delay for smooth navigation
+//       }
+//     }
+//   }, [navigate, setIsAuthenticated]);
+
+//   return null;
+// }
+
+// export default RefreshHandler;
+
+// import { useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
+
+// function RefreshHandler({ setIsAuthenticated }) {
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const token = localStorage.getItem("token");
+//     const role = localStorage.getItem("role");
+
+//     if (token) {
+//       setIsAuthenticated((prev) => {
+//         if (!prev) return true; // Prevent unnecessary state update
+//         return prev;
+//       });
+
+//       if (role?.toLowerCase() === "admin") {
+//         setTimeout(() => {
+//           navigate("/admin/admindashboard", { replace: true });
+//         }, 100);
+//       }
+//     }
+//   }, [navigate, setIsAuthenticated]); // No unnecessary dependencies
+
+//   return null;
+// }
+
+// export default RefreshHandler;
 
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -38,27 +97,24 @@ function RefreshHandler({ setIsAuthenticated }) {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const role = localStorage.getItem('role'); // Assuming the role is stored in localStorage
+    const role = localStorage.getItem('role');
 
     if (token) {
-      setIsAuthenticated(true);
-
-      // Redirect based on role
-      if (
-      
-        // location.pathname === '/' ||
-        location.pathname === '/login' ||
-        location.pathname === '/signup'
-       
-      ) {
-        if (role === 'Admin') {
-          navigate('/home');
-        } else if (role === 'Editor') {
-          navigate('/home');
+      setIsAuthenticated(prev => {
+        if (!prev) {
+          console.log("User authenticated");
+          return true;
         }
+        return prev;
+      });
+
+      // ✅ Ensure redirection happens only if the role is admin & not already on the dashboard
+      if (role?.toLowerCase() === 'admin' && location.pathname === "/home" && location.pathname === " " ) {
+        console.log("Redirecting to Admin Dashboard...");
+        navigate('/admin/admindashboard', { replace: true });
       }
     }
-  }, [location, navigate, setIsAuthenticated]);
+  }, [location.pathname, navigate, setIsAuthenticated]);
 
   return null;
 }
