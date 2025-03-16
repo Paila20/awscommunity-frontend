@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../utils';
-import { FiMenu, FiX } from "react-icons/fi";
-import Navbar from './Navbar';
+
+
  
 function Login() {
-    const [isToggled, setIsToggled] = useState(false);
+    
     const [loginInfo, setLoginInfo] = useState({
         email: '',
         password: ''
@@ -14,9 +14,7 @@ function Login() {
    const [errors, setErrors] = useState({});
    
     const navigate = useNavigate();
-    const toggleNavbar = () => {
-        setIsToggled(!isToggled);
-    };
+  
       
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -49,7 +47,7 @@ function Login() {
         //     return handleError('email and password are required')
         // }
         try {
-            const url = `http://localhost:5000/api/auth/login`;
+            const url = `https://awscommunity-backend.onrender.com/api/auth/login`;
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
@@ -87,7 +85,7 @@ function Login() {
 
     return (
         <div className=''>
-            <Navbar/>
+            {/* <Navbar/> */}
         <div className='about-form '>
 
             <h1 style={{color:"blue"}}>Login</h1>

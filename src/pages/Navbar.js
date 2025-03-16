@@ -84,31 +84,25 @@
 // export default Navbar;
 
 import React, { useState, useEffect } from "react";
-import { FaUserCircle } from "react-icons/fa";
+
 import { FiMenu, FiX } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { useSection } from "../context/SectionContext"; // Import the section context
-import { handleSuccess } from "../utils";
+import { useSection } from "../context/SectionContext"; 
+
 import logo from "../assets/awscommunitylogo.png";
 
 const Navbar = () => {
   const [isToggled, setIsToggled] = useState(false);
   const navigate = useNavigate();
-  const userRole = localStorage.getItem("role");
-  const { sections, fetchSections } = useSection(); // Fetch sections from context
+
+  const { sections, fetchSections } = useSection(); 
 
   useEffect(() => {
     fetchSections();
         // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("loggedInUser");
-    localStorage.removeItem("role");
-    handleSuccess("User Logged out");
-    navigate("/home");
-  };
+ 
 
   const toggleNavbar = () => {
     setIsToggled(!isToggled);
@@ -131,8 +125,8 @@ const Navbar = () => {
               <span className="nav-link text-white fs-6 px-0 me-2" onClick={() => navigate("/home")}>Home</span>
             </li>
 
-            {/* Dynamically Render Sections from API */}
-            {sections?.length > 0 ? (
+           
+            {/* {sections?.length > 0 ? (
               sections.map((section) => (
                 <li key={section._id} className="nav-item cursor-pointer">
                   <span className="nav-link text-white fs-6 px-0 me-2" onClick={() => navigate(`/sections/details/${section._id}`)}>
@@ -144,7 +138,21 @@ const Navbar = () => {
               <li className="nav-item cursor-pointer">
                 <span className="nav-link text-white fs-6 px-0 me-2">Loading Sections...</span>
               </li>
-            )}
+            )} */}
+
+{sections?.length > 0 && (
+  sections.map((section) => (
+    <li key={section._id} className="nav-item cursor-pointer">
+      <span
+        className="nav-link text-white fs-6 px-0 me-2"
+        onClick={() => navigate(`/sections/details/${section._id}`)}
+      >
+        {section.name}
+      </span>
+    </li>
+  ))
+)}
+
 
             {/* Static Links - Team, Events, Join Us */}
             <li className="nav-item cursor-pointer">

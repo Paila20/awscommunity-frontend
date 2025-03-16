@@ -50,6 +50,7 @@ const SectionForm = () => {
       };
       fetchSection();
     }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sectionId]);
   
 
@@ -79,10 +80,13 @@ const SectionForm = () => {
 
   return (
     <div style={formContainerStyle}>
-      <h2 style={{ textAlign: "center" }}>{sectionId ? "Edit Section" : "Create Section"}</h2>
+      <h2 style={{ textAlign: "center",borderBottom:"1px solid gray" }}>{sectionId ? "Edit Custom Section" : "Create Custom Section"}</h2>
       <form onSubmit={handleSubmit} style={formStyle}>
+        <label>Section Name</label>
         <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required style={inputStyle} />
+        <label>Section Title</label>
         <input type="text" name="title" placeholder="Title" value={formData.title} onChange={handleChange} required style={inputStyle} />
+        <label>Section Description</label>
          <Editor
           apiKey="cdkybh72b806yb8kb8ye2g3x72km1gswc3ceh8yisls29vx9" // Replace with your TinyMCE API key if needed
           value={formData.description}
@@ -115,25 +119,29 @@ const SectionForm = () => {
             handleChange({ target: { name: "description", value: content } })
           }
         />
-        {/* <textarea name="description" placeholder="Description" value={formData.description} onChange={handleChange} style={textAreaStyle} /> */}
+       <label>Menu</label>
         <input type="text" name="sectionMenu" placeholder="Menu" value={formData.sectionMenu} onChange={handleChange} style={inputStyle} />
         <label style={checkboxLabelStyle}>
           <input type="checkbox" name="attachForm" checked={formData.attachForm} onChange={handleChange} style={checkboxStyle} />
           Attach Form
         </label>
-        <button type="submit" style={buttonStyle}>{sectionId ? "Update" : "Create"}</button>
+        <div>
+        <button type="submit" style={buttonStyle}>Save</button>
+        <button type ="button"  style={backbuttonStyle} className="ms-1" onClick={() => navigate("/admin/admindashboard/sections")}>Back</button>
+        </div>
       </form>
     </div>
   );
 };
 
 // Styles
-const formContainerStyle = {  margin: "auto", padding: "20px", backgroundColor: "#f9f9f9", borderRadius: "8px" };
+const formContainerStyle = {  margin: "auto", padding: "15px", backgroundColor: "#f9f9f9", borderRadius: "8px" };
 const formStyle = { display: "flex", flexDirection: "column" };
-const inputStyle = { width: "100%", padding: "10px", marginBottom: "10px", border: "1px solid #ccc", borderRadius: "4px" };
-const textAreaStyle = { ...inputStyle, height: "100px", resize: "vertical" };
+const inputStyle = { width: "100%", padding: "5px", marginBottom: "10px", border: "1px solid #ccc", borderRadius: "4px" };
+
 const checkboxLabelStyle = { display: "flex", alignItems: "center", marginBottom: "10px" };
 const checkboxStyle = { marginRight: "10px" };
-const buttonStyle = { width: "100%", padding: "10px", backgroundColor: "#4CAF50", color: "white", border: "none", borderRadius: "4px" };
+const buttonStyle = {  padding: "5px", backgroundColor: "green", color: "white", border: "none", borderRadius: "4px" };
+const backbuttonStyle = {  padding: "5px 7px", backgroundColor: "gray", color: "white", border: "none", borderRadius: "4px" };
 
 export default SectionForm;

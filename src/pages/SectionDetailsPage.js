@@ -9,7 +9,7 @@ import { useBlog } from "../context/BlogContext";
 const SectionDetailsPage = () => {
   const { id } = useParams();
   const { sections } = useSection();
-  const { submitContactForm, loading, message } = useBlog();
+  const { submitContactForm} = useBlog();
   const [section, setSection] = useState(null);
   const role = localStorage.getItem("role")
 
@@ -70,7 +70,7 @@ const SectionDetailsPage = () => {
   return (
     <>{role === "admin" ?(
     
-      < div id="about" className="contact section-show admin">
+      < div id="about" className=" section-show admin">
         <div className="container">
           <div className="section-title">
             <h2>{section?.name || "Loading..."}</h2>

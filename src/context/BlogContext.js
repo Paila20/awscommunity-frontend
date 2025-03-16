@@ -19,7 +19,7 @@ export const BlogProvider = ({ children }) => {
     const [entries, setEntries] = useState([]); 
     const API_BASE_URL = 'https://awscommunity-backend.onrender.com/api'; 
     // const API_BASE_URL = 'http://localhost:5000';
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
   
 const submitContactForm = async (formData) => {
     setLoading(true);
