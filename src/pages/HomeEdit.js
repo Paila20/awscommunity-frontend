@@ -143,12 +143,20 @@ const HomeEdit = () => {
        
 
         <br />
-        <button type="submit" className="btn btn-primary mt-3">
-          Save Changes
+        <div className="d-flex align-items-center justify-content-center">
+        <button type="submit" style={buttonStyle}>
+          Submit
         </button>
+        <button type="button" style={backbuttonStyle} onClick={()=>{  navigate("/admin/admindashboard"); }}>
+          Back
+        </button>
+        </div>
       </form>
     </div>
   );
 };
 
 export default HomeEdit;
+
+const buttonStyle = {  padding: "5px", backgroundColor: "green", color: "white", border: "none", borderRadius: "4px" };
+const backbuttonStyle = {  padding: "5px 7px", backgroundColor: "gray", color: "white", border: "none", borderRadius: "4px" ,marginLeft:"5px"};
