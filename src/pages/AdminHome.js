@@ -37,7 +37,7 @@ const Home = () => {
   border: "none",
   cursor: "pointer", }}   onClick={() => navigate("/admin/admindashboard/home/edit")}>Edit</button>
           <h1 className="mt-5">
-            <img src={homeData.logo} alt="logo" />
+            <img src={homeData?.logo} alt="logo" />
           </h1>
          
 
@@ -48,9 +48,9 @@ const Home = () => {
           
            
             {/* {homeData.description} */}
-             <div
+             <h2
                             
-                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(homeData.description) }}
+                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(homeData?.description) }}
                           />
 
           

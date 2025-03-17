@@ -1,17 +1,28 @@
 
 
 import React, { useState,useEffect } from "react";
-import logo from "../assets/awscommunitylogo.png";
+
 import { useSection } from "../context/SectionContext"; 
 import { FiMenu, FiX } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useHome } from "../context/HomeContext";
+import DOMPurify from "dompurify";
 
 
 const Home = () => {
+    const { homeData={} } = useHome();
   const [isToggled, setIsToggled] = useState(false);
-  const navigate = useNavigate();
-  const { sections, fetchSections } = useSection(); 
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const { sections=[], fetchSections } = useSection(); 
   // const role = localStorage.getItem("role")
+  useEffect(() => {
+    if (homeData?.logo) {
+      const img = new Image();
+      img.src = homeData.logo;
+      img.onload = () => setIsLoaded(true);
+    }
+  }, [homeData]);
 
    useEffect(() => {
       fetchSections();
@@ -24,14 +35,20 @@ const Home = () => {
     setIsToggled(!isToggled);
   };
 
+  if (!isLoaded) return null;
+
   return (
     <div className="position-relative" >
       {/* Header Section */}
       <header className="header">
         <div className="container">
+          <div>
           <h1>
-            <img src={logo} alt="logo" />
+            <img src={homeData?.logo} alt="logo" />
           </h1>
+          <h2 className="pt-0" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(homeData?.description) }}
+                          />
+          </div>
          
 
           {/* Toggle Button (Visible Only on Small Screens) */}
@@ -46,21 +63,6 @@ const Home = () => {
           {/* Overlay with Black Background on Small Screens */}
           {isToggled && <div className="mobile-menu-overlay" onClick={toggleNavbar}></div>}
 
-          {/* Navbar */}
-          
-          <h2>
-            <span style={{ color: "rgb(236, 240, 241)" }}>
-              Cloud Community Bharat: Soaring Together with{" "}
-              <strong
-                style={{
-                  borderBottom: "2px solid #ffa31f",
-                  paddingBottom: "6px",
-                }}
-              >
-                AWS Excellence
-              </strong>
-            </span>
-          </h2>
  
 
               <nav className={`navbar navbar-expand-lg   ${isToggled ? "mobile-navbar" : ""}`}>
@@ -68,42 +70,69 @@ const Home = () => {
               <div className={`collapse navbar-collapse ${isToggled ? "show" : ""}`} id="navbarNav">
                 <ul className="navbar-nav me-lg-auto align-items-center">
                   <li className="nav-item cursor-pointer me-lg-3 ">
-                    <span className="nav-link text-white fs-6 px-0 me-2" onClick={() => navigate("/home")}>
+                    {/* <span className="nav-link text-white fs-6 px-0 me-2" onClick={() => navigate("/home")}>
                       Home
-                    </span>
+                    </span> */}
+                    <NavLink
+                      to="/home"
+                      className="nav-link text-white fs-6 px-0 me-2"
+                      onClick={toggleNavbar}
+                    >
+                      Home
+                    </NavLink>
                   </li>
-                  {sections?.length > 0 && (
-  sections.map((section) => (
+             
+                  
+
+                  {sections?.slice(0, 2).map((section) => (
     <li key={section._id} className="nav-item cursor-pointer">
-      <span
-        className="nav-link text-white fs-6 px-0 me-2"
+      {/* <span
+        className="nav-link text-white fs-6 px-0 mx-3"
         onClick={() => navigate(`/sections/details/${section._id}`)}
       >
         {section.name}
-      </span>
+      </span> */}
+       <NavLink
+                        to={`/sections/details/${section._id}`}
+                        className="nav-link text-white fs-6 px-0 mx-3"
+                        onClick={toggleNavbar}
+                      >
+                        {section.name}
+                      </NavLink>
     </li>
-  ))
-)}
-
+  ))}
                  
                   {/* User Profile */}
                   <li className="nav-item mx-lg-3 cursor-pointer">
-                  <span className="nav-link text-white fs-6 px-0 me-2" onClick={() => navigate("/team")}>
+                  <NavLink
+                      to="/team"
+                      className="nav-link text-white fs-6 px-0 me-2"
+                      onClick={toggleNavbar}
+                    >
                       Team
-                    </span>
+                    </NavLink>
                   </li>
                   <li className="nav-item mx-lg-3 cursor-pointer">
-                  <span className="nav-link text-white fs-6 px-0 me-2" onClick={() => navigate("/events")}>
+                  <NavLink
+                      to="/events"
+                      className="nav-link text-white fs-6 px-0 me-2"
+                      onClick={toggleNavbar}
+                    >
                       Events
-                    </span>
+                    </NavLink>
                   </li>
 
-                  {/* Logout Button */}
-                  <li className="nav-item cursor-pointer">
-                  <span className="nav-link text-white fs-6 px-0 me-2" onClick={() => navigate("/joinus")}>
-                      Join Us
-                    </span>
-                   </li>
+                  {sections?.slice(2).map((section) => (
+    <li key={section._id} className="nav-item cursor-pointer">
+      <NavLink
+                        to={`/sections/details/${section._id}`}
+                        className="nav-link text-white fs-6 px-0 me-2"
+                        onClick={toggleNavbar}
+                      >
+                        {section.name}
+                      </NavLink>
+    </li>
+  ))}
                   
                 </ul>
               </div>

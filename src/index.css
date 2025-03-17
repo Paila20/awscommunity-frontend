@@ -71,6 +71,12 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+.navbar-nav .nav-link.active::before {
+  width: 50%;
+  visibility: visible;
+  background-color: #ffa31f;
+}
+
 .navbar-nav .nav-link:hover::before {
   width: 50%;
   visibility: visible;
