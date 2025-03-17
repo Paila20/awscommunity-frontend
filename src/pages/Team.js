@@ -347,7 +347,9 @@ const Team = () => {
 
          <div className="row">
            {team.length > 0 ? (
-             team.map((member) => (
+             team
+             .slice()
+             .reverse().map((member) => (
                <div key={member._id} className="col-lg-4 col-md-6 d-flex align-items-stretch" style={{position:"relative"}}>
                  <div className="icon-box">
                  
@@ -405,7 +407,9 @@ const Team = () => {
 
         <div className="row">
           {team.length > 0 ? (
-            team.map((member) => (
+            team 
+            .slice() 
+            .reverse().map((member) => (
               <div key={member._id} className="col-lg-4 col-md-6 d-flex align-items-stretch" style={{position:"relative"}}>
                 <div className="icon-box">
                 
