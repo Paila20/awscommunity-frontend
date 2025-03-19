@@ -12,17 +12,17 @@ import DOMPurify from "dompurify";
 const Home = () => {
     const { homeData={} } = useHome();
   const [isToggled, setIsToggled] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
+  // const [isLoaded, setIsLoaded] = useState(false);
 
   const { sections=[], fetchSections } = useSection(); 
   // const role = localStorage.getItem("role")
-  useEffect(() => {
-    if (homeData?.logo) {
-      const img = new Image();
-      img.src = homeData.logo;
-      img.onload = () => setIsLoaded(true);
-    }
-  }, [homeData]);
+  // useEffect(() => {
+  //   if (homeData?.logo) {
+  //     const img = new Image();
+  //     img.src = homeData.logo;
+  //     img.onload = () => setIsLoaded(true);
+  //   }
+  // }, [homeData]);
 
    useEffect(() => {
       fetchSections();
@@ -35,16 +35,21 @@ const Home = () => {
     setIsToggled(!isToggled);
   };
 
-  if (!isLoaded) return null;
+  // if (!isLoaded) return null;
 
   return (
-    <div className="position-relative" >
+    <div className="position-relative" style={{
+      backgroundImage: `url(${homeData?.banner})`,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      minHeight: "100vh",
+    }}>
       {/* Header Section */}
       <header className="header">
         <div className="container">
           <div>
           <h1>
-            <img src={homeData?.logo} alt="logo" />
+            <img src={homeData?.logo}  loading="lazy" alt="logo" />
           </h1>
           <h2 className="pt-0" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(homeData?.description) }}
                           />

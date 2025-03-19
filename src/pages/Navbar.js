@@ -31,8 +31,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar navbar-expand-lg ${isToggled ? "mobile-navbar1" : "header-top"}`}>
-      <div className="container-fluid mx-sm-4 mx-2 text-white">
+    <nav className={`navbar navbar-expand-lg px-5  ${isToggled ? "mobile-navbar1" : "header-top"}`}>
+      <div className="container-fluid mx-sm-4 mx-5 px-5 text-white">
         <p className="fs-4 cursor-pointer hover:text-purple-500 transition-colors duration-300" >
           <img src={logo} alt="logo" className="w-50" />
         </p>

@@ -120,7 +120,7 @@ const AdminLayout = () => {
             >
               <img src={logo} alt="logo" className="w-50" />
             </p>
-            <h5 className="ms-0 cursor-pointer  "   onClick={toggleDropdown}>Cloud Community</h5>
+            <h5 className="ms-0  " style={{cursor:"pointer"}}  onClick={toggleDropdown}>Cloud Community</h5>
             {isDropdownOpen && (
                 <div className="dropdown-menu show position-absolute end-0 bg-white shadow rounded"  style={{ transform: "translateY(75px)", zIndex: 1050 }}>
                   <Link className="dropdown-item" to="/admin/profile">

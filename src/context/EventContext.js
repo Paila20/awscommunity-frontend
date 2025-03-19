@@ -14,40 +14,7 @@ export const EventProvider = ({ children }) => {
   // ✅ Get Auth Token from Local Storage
   const getToken = () => localStorage.getItem("token");
 
-  // ✅ Fetch All Events (or by category)
-  // const fetchEvents = async (category = "") => {
-
-  // console.log("fetchEvents function is being called");
-  //   setLoading(true);
-  //   try {
-  //     const res = await axios.get(`${API_BASE_URL}${category ? `?category=${category}` : ""}`);
-  //     console.log("Fetched events:", res.data);
-  //     setEvents(res.data);
-  //   } catch (error) {
-  //     console.error("Error fetching events:", error);
-  //     setEvents([]);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // const fetchEvents = async (category = "") => {
-  //   console.log("fetchEvents function is being called");
-  //   setLoading(true);
-  
-  //   try {
-  //     const res = await axios.get(`${API_BASE_URL}${category ? `?category=${category}` : ""}`);
-  //     console.log("Fetched events:", res.data);
-  
-  //     const data = Array.isArray(res.data) ? res.data : [];
-  //     setEvents(data); // Ensure it's always an array
-  //   } catch (error) {
-  //     console.error("Error fetching events:", error);
-  //     setEvents([]);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+ 
   
   const fetchEvents = async (category = "") => {
     console.log("fetchEvents function is being called");
@@ -118,7 +85,7 @@ export const EventProvider = ({ children }) => {
   };
 
   return (
-    <EventContext.Provider value={{ events, setEvents,fetchEvents, createEvent, updateEvent, deleteEvent, loading }}>
+    <EventContext.Provider value={{ events, setEvents,fetchEvents, createEvent, updateEvent, deleteEvent, loading,setLoading }}>
       {children}
     </EventContext.Provider>
   );

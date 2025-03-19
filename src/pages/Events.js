@@ -11,41 +11,46 @@ import Captions from "yet-another-react-lightbox/plugins/captions";
 
 
 
+
 const EventsPage = () => {
-  const { events,setEvents,fetchEvents, deleteEvent, loading } = useEvent();
+  const { events,setEvents,fetchEvents, deleteEvent, loading,setLoading } = useEvent();
  
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [allCategories, setAllCategories] = useState(["All"]); 
   const [allEvents, setAllEvents] = useState([]); // Store all events initially
   const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [deleteId, setDeleteId] = useState(null);
+  
   const navigate = useNavigate();
   const role = localStorage.getItem("role");
   
 
-
-useEffect(() => {
   const loadEvents = async () => {
-    const fetchedEvents = await fetchEvents("");
-
-    if (fetchedEvents.length > 0) {
-      setAllEvents(fetchedEvents);
-      setEvents(fetchedEvents);
-
-      const uniqueCategories = ["All", ...new Set(fetchedEvents.map((e) => e.category))];
-      setAllCategories(uniqueCategories);
-    } else {
-      console.warn('No events found');
-      setAllEvents([]);
-      setEvents([]);
+    setLoading(true);
+    try {
+      const fetchedEvents = await fetchEvents("");
+      if (fetchedEvents.length > 0) {
+        setAllEvents(fetchedEvents);
+        setEvents(fetchedEvents); // Keep full event data
+        const uniqueCategories = ["All", ...new Set(fetchedEvents.map((e) => e.category))];
+        setAllCategories(uniqueCategories);
+        setSelectedCategory("All");
+      } else {
+        setAllEvents([]);
+        setEvents([]);
+      }
+    } catch (error) {
+      console.error("Error loading events:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
+useEffect(() => {
   loadEvents();
-         // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
 
-  
 
   // Handle category filter locally
   useEffect(() => {
@@ -95,14 +100,28 @@ useEffect(() => {
   };
   
 
-  // const confirmDelete = async () => {
-  //   await deleteEvent(deleteId);
-  //   setShowDeleteModal(false);
-  //   setDeleteId(null);
-  // };
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
   
-
-
+    if (category === "All") {
+      // Shuffle all images randomly and display everything
+      const shuffledEvents = [...allEvents].sort(() => Math.random() - 0.5);
+      setEvents([...shuffledEvents]); // No slice — display everything!
+    } else {
+      // For specific categories, pick 5-6 random images
+      const filteredEvents = allEvents.filter((event) => event.category === category);
+      const randomSelection = [...filteredEvents]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 6);
+  
+      setEvents(randomSelection);
+    }
+  };
+  
+  const handleOpenLightbox = (index) => {
+    setCurrentIndex(index);
+    setOpen(true);
+  };
   
 
   return (
@@ -112,11 +131,17 @@ useEffect(() => {
         <div className="section-show">
           <div className="container">
             <div className="section-title">
-              <h2>Events</h2>
-              <div className="">
-                <p>Our Events</p>
+            
+              <div className="pt-5">
                 
-                  <button className="btn btn-primary mb-3" onClick={() => handleAddNew()}>Create</button>
+                
+                  <button className=" mb-3" onClick={() => handleAddNew()} style={{  marginBottom: "10px",
+  padding: "5px 7px",
+  background: "#FFC107",
+  color: "black",
+  borderRadius: "5px",
+  border: "none",
+  cursor: "pointer", }}>Create New</button>
               
               </div>
             </div>
@@ -124,27 +149,31 @@ useEffect(() => {
             {/* Category Filter Buttons */}
             <div className="row">
               <div className="col-lg-12 d-flex justify-content-center mb-3">
-                 <button
-      key="All"
-      className={`btn btn-outline-primary me-2 portfolio-filters ${
-        selectedCategory === "All" ? "active" : ""
-      }`}
-      onClick={() => setSelectedCategory("All")}
-    >
-      All
-    </button>
-                {allCategories  
-                .filter((category) => category !== "All")
-                 .slice()
-                 .reverse().map((category) => (
-                  <button
-                    key={category}
-                    className={`btn btn-outline-primary me-2 portfolio-filters ${selectedCategory === category ? "active" : ""}`}
-                    onClick={() => setSelectedCategory(category)}
-                  >
-                    {category}
-                  </button>
-                ))}
+               
+
+<button
+        key="All"
+        className={`admin-portfolio-filters me-2 border-0 ${selectedCategory === "All" ? "active" : ""}`}
+        onClick={() => handleCategoryChange("All")}
+      >
+        All
+      </button>
+
+      {/* Other categories (reversed order) */}
+      {allCategories
+        .filter((category) => category !== "All")
+        .slice()
+        .reverse()
+        .map((category) => (
+          <button
+            key={category}
+            className={`admin-portfolio-filters me-2 border-0 ${selectedCategory === category ? "active" : ""}`}
+            onClick={() => handleCategoryChange(category)}
+          >
+            {category}
+          </button>
+        ))}
+
               </div>
             </div>
   
@@ -171,13 +200,20 @@ useEffect(() => {
               }
             }
             />
-            <p>{event?.title}</p>
-            <p>{event?.description}</p>
+            <div className="ps-3">
+            <p ><strong>{event?.title}</strong></p>
+            {/* <p>{event?.description}</p> */}
             <p>{event?.category}</p>
 
-             <div className="">
+             <div className="pb-3">
         <button
-          className="bg-transparent border-0"
+          style={{  
+            padding: "5px 7px",
+            background: "#013a89",
+            color: "white",
+            borderRadius: "5px",
+            border: "none",
+            cursor: "pointer", }}
           onClick={() => {
             console.log("Edit Clicked for:", event._id);
             setOpen(false);
@@ -188,7 +224,14 @@ useEffect(() => {
         </button>
   
         <button
-          className="bg-transparent border-0"
+           style={{ 
+            padding: "5px 7px",
+            background: "red",
+            color: "white",
+            borderRadius: "5px",
+            marginLeft:"5px",
+            border: "none",
+            cursor: "pointer", }}
           onClick={() => {
             console.log("Delete Clicked for ID:", event._id);
             setOpen(false);
@@ -197,6 +240,7 @@ useEffect(() => {
         >
           Delete
         </button>
+        </div>
       </div>
             </div>
           </div>
@@ -263,7 +307,7 @@ useEffect(() => {
     ):(
       <>
         <Navbar />
-        <section className="section-show">
+        <section className="section-show portfolio">
           <div className="container">
             <div className="section-title">
               <h2>Events</h2>
@@ -276,18 +320,33 @@ useEffect(() => {
             {/* Category Filter Buttons */}
             <div className="row">
               <div className="col-lg-12 d-flex justify-content-center mb-3">
-                <ul>
-                {allCategories.map((category) => (
+             
 
-                  <li
-                    key={category}
-                    className={`btn btn-outline-primary me-2 portfolio-filters ${selectedCategory === category ? "active" : ""}`}
-                    onClick={() => setSelectedCategory(category)}
-                  >
-                    {category}
-                  </li>
-                ))}
-                </ul>
+
+
+<button
+        key="All"
+        className={`portfolio-filters me-2 border-0 ${selectedCategory === "All" ? "active" : ""}`}
+        onClick={() => handleCategoryChange("All")}
+      >
+        All
+      </button>
+
+      {/* Other categories (reversed order) */}
+      {allCategories
+        .filter((category) => category !== "All")
+        .slice()
+        .reverse()
+        .map((category) => (
+          <button
+            key={category}
+            className={`portfolio-filters me-2 border-0 ${selectedCategory === category ? "active" : ""}`}
+            onClick={() => handleCategoryChange(category)}
+          >
+            {category}
+          </button>
+        ))}
+                
               </div>
             </div>
   
@@ -302,25 +361,34 @@ useEffect(() => {
     ) : (
     
         
-          events.map((event, index) => (
+          events.slice(0,6).map((event, index) => (
           <div key={event._id} className="col-lg-4 col-md-6 mb-4">
-            <div className="card">
+            <div className="card portfolio-wrap border-0 ">
             <img
               src={event.image}
               alt={event.title}
               className="cursor-pointer "
-              onClick={() => {
-                console.log("Clicked index:", index); // Debugging
-  
-                setCurrentIndex(index); // Make sure setCurrentIndex is defined
-                setOpen(true);
-              }
-            }
+        
             />
+
+<div className="portfolio-info">
+        <h5 className="text-white ">{event.title}</h5>
+        <button
+          className="plus-button "
+          onClick={() => handleOpenLightbox(index)}
+        >
+        +
+        </button>
+      </div>
+
+
+
+         
+     
             </div>
           </div>
         ))
-      // </div>
+      
     )}
   </div>
   {console.log("Lightbox Open:", open)}
@@ -350,16 +418,16 @@ useEffect(() => {
      
   
     {/* Image & Description Wrapper */}
-    <div className=" d-flex flex-column align-items-center  justify-content-center vh-100  w-md-100 w-75 ">
+    <div className=" d-flex flex-column align-items-center  justify-content-center  ">
       {/* Image */}
       <img 
         src={slide.src} 
         alt={slide.description} 
-        className="w-100 h-md-50 h-sm-25 object-fit-cover"
+        className="img-fluid object-fit-cover"
       />
   
       {/* Description */}
-      <div className="w-100 fw-bold text-dark bg-white text-center p-2">
+      <div className="w-100 fw-bold text-dark bg-white text-center  mb-5">
         {slide.description}
       </div>
     </div>
@@ -413,3 +481,4 @@ useEffect(() => {
 };
 
 export default EventsPage;
+
