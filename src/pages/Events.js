@@ -319,7 +319,7 @@ useEffect(() => {
   
             {/* Category Filter Buttons */}
             <div className="row">
-              <div className="col-lg-12 d-flex justify-content-center mb-3">
+              <div className="col-lg-12 d-flex justify-content-center mb-3 flex-wrap gap-3 px-lg-3">
              
 
 
@@ -340,7 +340,7 @@ useEffect(() => {
         .map((category) => (
           <button
             key={category}
-            className={`portfolio-filters me-2 border-0 ${selectedCategory === category ? "active" : ""}`}
+            className={`portfolio-filters me-2 border-0 flex-wrap ${selectedCategory === category ? "active" : ""}`}
             onClick={() => handleCategoryChange(category)}
           >
             {category}

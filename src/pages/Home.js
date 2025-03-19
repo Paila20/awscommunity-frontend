@@ -38,27 +38,41 @@ const Home = () => {
   // if (!isLoaded) return null;
 
   return (
-    <div className="position-relative" style={{
+    <div
+    className="position-relative w-100 vh-100  d-flex align-items-center justify-content-center d-md-block"
+    style={{
       backgroundImage: `url(${homeData?.banner})`,
       backgroundSize: "cover",
-      backgroundRepeat: "no-repeat",
-      minHeight: "100vh",
-    }}>
+      backgroundPosition: "center",
+    }}
+    
+    // className="position-relative bg-cover bg-no-repeat" style={{
+    //   backgroundImage: `url(${homeData?.banner})`,
+    //   backgroundSize: "cover",
+    //   backgroundPosition: "center",
+    //   backgroundRepeat: "no-repeat",
+    //   minHeight: "100vh", 
+      
+    //   width: "100%",
+    // }}
+    >
       {/* Header Section */}
-      <header className="header">
+      <header className="header text-center text-lg-start gap-3">
         <div className="container">
-          <div>
+          <div className="mx-auto d-flex flex-column align-items-sm-center justify-content-sm-center  align-items-lg-start justify-content-lg-start">
           <h1>
             <img src={homeData?.logo}  loading="lazy" alt="logo" />
           </h1>
-          <h2 className="pt-0" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(homeData?.description) }}
+          <h2>
+          <p className="pt-2 fs-5 text-start  " dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(homeData?.description) }}
                           />
+                          </h2>
           </div>
          
 
           {/* Toggle Button (Visible Only on Small Screens) */}
           <button
-            className="d-lg-none position-absolute"
+            className="d-lg-none position-absolute bg-transparent text-white border-0"
             style={{ top: "10px", right: "10px", zIndex: 2000 }}
             onClick={toggleNavbar}
           >

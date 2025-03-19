@@ -40,23 +40,6 @@ function App() {
  
  
 
-  // useEffect(() => {
-   
-    
-  // if (homeData && homeData?.banner) {
-    
-  //    if (currentLocation.pathname.startsWith('/admin')) {
-  //     document.body.style.backgroundImage = "none";
-  //     document.body.style.backgroundColor = "#fff";
-  //   } else {
-  //     document.body.style.backgroundImage = `url(${homeData?.banner})`;
-  //   }
-  // }
-  //   return () => {
-  //     document.body.style.backgroundImage = "";
-  //   };
-  // }, [currentLocation.pathname]);
-
   useEffect(() => {
     // Ensure background resets on admin routes
     if (currentLocation.pathname.startsWith('/admin')) {
