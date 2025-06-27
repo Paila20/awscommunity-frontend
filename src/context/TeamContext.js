@@ -8,7 +8,8 @@ export const TeamProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const API_BASE_URL = 'https://awscommunity-backend.onrender.com/api'; 
 //   const token = localStorage.getItem('token')
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem('token');
+  const getToken = () => localStorage.getItem("token");
 
   // Fetch Team Members
   const fetchTeam = async () => {
@@ -27,9 +28,9 @@ export const TeamProvider = ({ children }) => {
   const addTeamMember = async (formData) => {
     try {
       const res = await axios.post(`${API_BASE_URL}/team`, formData, {
-        headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" },
+        headers: { Authorization: `Bearer ${getToken()}`, "Content-Type": "multipart/form-data" },
       });
-      setTeam([res.data.member, ...team]);
+      setTeam([...team, res.data.member]);
     } catch (error) {
       console.error("Error adding team member:", error);
     }
@@ -39,7 +40,7 @@ export const TeamProvider = ({ children }) => {
   const updateTeamMember = async (id, formData) => {
     try {
       const res = await axios.put(`${API_BASE_URL}/team/${id}`, formData, {
-        headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" },
+        headers: { Authorization: `Bearer ${getToken()}`, "Content-Type": "multipart/form-data" },
       });
       setTeam(team.map(member => (member._id === id ? res.data.member : member)));
     } catch (error) {
@@ -51,7 +52,7 @@ export const TeamProvider = ({ children }) => {
   const deleteTeamMember = async (id) => {
     try {
       await axios.delete(`${API_BASE_URL}/team/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${getToken()}` },
       });
       setTeam(team.filter(member => member._id !== id));
     } catch (error) {

@@ -148,7 +148,7 @@ useEffect(() => {
   
             {/* Category Filter Buttons */}
             <div className="row">
-              <div className="col-lg-12 d-flex justify-content-center mb-3">
+              <div className="col-lg-12 d-flex justify-content-center flex-wrap gap-3 mb-3">
                
 
 <button

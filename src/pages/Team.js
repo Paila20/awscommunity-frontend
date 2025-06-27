@@ -356,7 +356,7 @@ const Team = () => {
                     
                   
                    <div className="icon">
-                     <img src={member.image} alt={member.name} />
+                     <img src={member.image} alt={member.name} className="img-fluid" />
                    </div>
                    <h4>
                      {member.name}
