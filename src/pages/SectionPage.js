@@ -5,10 +5,12 @@
 import React, { useEffect, useState } from "react";
 import { useSection } from "../context/SectionContext";
 import { useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 const SectionsPage = () => {
   const { sections, loading, deleteSection, fetchSections } = useSection();
   const navigate = useNavigate();
+   const { isSidebarOpen } = useOutletContext();
 
   // State for delete modal
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -19,10 +21,20 @@ const SectionsPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (loading) return <p className="mt-5" style={{marginTop:"800px"}}>Loading sections...</p>;
-  console.log("Fetched sections:", sections);
+  // if (loading) return <p className="mt-5" style={{marginTop:"800px"}}>...</p>;
+  // console.log("Fetched sections:", sections);
+
+  if (loading) return (
+    <div  className="d-flex justify-content-center align-items-center"
+      style={{ height: "100vh"   , width: isSidebarOpen ? "calc(100vw - 250px)" : "100vw", }}>
+      <p className="">Loading...</p> 
+    </div>
+     
+ 
+  )
 
   // Open delete modal
+
   const handleDeleteClick = (sectionId) => {
     setSelectedSectionId(sectionId);
     setShowDeleteModal(true);
@@ -99,7 +111,7 @@ const SectionsPage = () => {
         ))
       ) : (
       
-          <div  className="d-flex justify-content-center align-items-center"
+          <div  className="d-flex justify-content-center align-items-center mt-5 pt-5"
       style={{ height: "100vh", width: "100vw" }}>
       <p className="">Loading...</p> 
     </div>
