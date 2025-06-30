@@ -284,11 +284,12 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { useTeam } from "../context/TeamContext";
+import { useOutletContext } from "react-router-dom";
 
 
 const Team = () => {
-  const { team, fetchTeam, deleteTeamMember } = useTeam();
-  
+  const { team, fetchTeam, deleteTeamMember, loading } = useTeam();
+  const { isSidebarOpen } = useOutletContext();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
   
@@ -324,6 +325,15 @@ const Team = () => {
     setDeleteId(null);
   };
 
+
+   if (loading) return (
+    <div  className="d-flex justify-content-center align-items-center"
+      style={{ height: "100vh"   , width: isSidebarOpen ? "calc(100vw - 250px)" : "100vw", }}>
+      <p className="">Loading...</p> 
+    </div>
+     
+ 
+  )
   return (
     <>
     
