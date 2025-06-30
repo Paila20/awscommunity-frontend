@@ -18,7 +18,7 @@ const Home = () => {
   
   if (loading) return (
     <div  className="d-flex justify-content-center align-items-center"
-      style={{ height: "100vh"   , width: "100vw", }}>
+      style={{ height: "100vh"   , width: isSidebarOpen ? "calc(100vw - 250px)" : "100vw", }}>
       <p className="">Loading...</p> 
     </div>
      
