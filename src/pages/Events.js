@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { useEvent } from "../context/EventContext";
 import Navbar from "./Navbar";
 import Lightbox from "yet-another-react-lightbox";
@@ -19,8 +20,8 @@ const EventsPage = () => {
   const [allCategories, setAllCategories] = useState(["All"]); 
   const [allEvents, setAllEvents] = useState([]); // Store all events initially
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [deleteId, setDeleteId] = useState(null);
-  
+  const [deleteId, setDeleteId] = useState(null);
+   const { isSidebarOpen } = useOutletContext();
   const navigate = useNavigate();
   const role = localStorage.getItem("role");
   
@@ -122,7 +123,14 @@ useEffect(() => {
     setCurrentIndex(index);
     setOpen(true);
   };
-  
+  if (loading) return (
+    <div  className="d-flex justify-content-center align-items-center"
+      style={{ height: "100vh"   , width: isSidebarOpen ? "calc(100vw - 250px)" : "100vw", }}>
+      <p className="">Loading...</p> 
+    </div>
+     
+ 
+  )
 
   return (
     <>
