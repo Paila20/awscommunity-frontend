@@ -71,7 +71,7 @@ const HomeEdit = () => {
   };
 
   return (
-    <div className=" mt-5 w-75 ps-5 align-items-start">
+    <div className=" mt-5 pt-5 w-75 ps-5 align-items-start">
 
       <form onSubmit={handleSubmit} className="pt-3">
 
@@ -128,14 +128,10 @@ const HomeEdit = () => {
                     handleChange({ target: { name: "description", value: content } })
                   }
                 />
-        {/* <textarea
-          name="description"
-          value={formData?.description}
-          onChange={handleChange}
-        ></textarea> */}
+      
         </div>
 
-        {/* Banner Image Upload */}
+    
        
 
         <br />
