@@ -71,14 +71,14 @@ const HomeEdit = () => {
   };
 
   return (
-    <div className=" mt-5 pt-5 w-75 ps-5 align-items-start">
+    <div className=" mt-5 pt-5  align-items-start container">
 
       <form onSubmit={handleSubmit} className="pt-3">
 
         {/* Logo Upload */}
         <div className="d-flex flex-column "> 
         <label>Banner Image:</label>
-        <input type="file" name="banner" onChange={handleChange} className="border"/>
+        <input type="file" name="banner" onChange={handleChange} className="border form-control"/>
         <div  className="d-flex flex-column justify-content-center align-items-center">
             <p>Selected image is showing below</p>
         <img src={formData.bannerPreview || homeData?.banner}
@@ -88,7 +88,7 @@ const HomeEdit = () => {
         </div>
         <div className="d-flex flex-column "> 
         <label>Logo Image:</label>
-        <input type="file" name="logo" onChange={handleChange} className="w-100 border"/>
+        <input type="file" name="logo" onChange={handleChange} className="w-100 border form-control"/>
         <div  className="d-flex flex-column justify-content-center align-items-center">
         <p>Selected image is showing below</p>
         <img src={formData.logoPreview || homeData?.logo}
@@ -103,7 +103,7 @@ const HomeEdit = () => {
          <Editor
                   apiKey="cdkybh72b806yb8kb8ye2g3x72km1gswc3ceh8yisls29vx9" // Replace with your TinyMCE API key if needed
                   value={formData.description}
-                 
+                 className="form-control"
                   init={{
                     height: 260,
                     plugins: [
