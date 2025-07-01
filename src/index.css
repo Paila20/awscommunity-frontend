@@ -625,6 +625,10 @@ b, strong {
   font-size: 2rem;
 }
 
+.tox .tox-dialog__body-content{
+  margin-top: 30px;
+}
+
 @media (max-width: 991px) {
   .sidebar-open {
     width: 100vw !important;
