@@ -80,11 +80,18 @@
 // export default EmailTemplate;
 
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
+// import { useBlog } from "../context/BlogContext";
 
 const EmailTemplate = ({ contact, onDelete }) => {
     const [showModal, setShowModal] = useState(false);
+    // const {fetchAllEntries} = useBlog()
+    
+
+//      useEffect(() => {
+//     fetchAllEntries();
+//   }, []);
 
     const handleDelete = () => {
         onDelete(contact._id);
@@ -94,7 +101,7 @@ const EmailTemplate = ({ contact, onDelete }) => {
     return (
         <div style={{
             fontFamily: "'Arial', sans-serif",
-            maxWidth: "600px",
+            maxWidth: "500px",
             margin: "auto",
             backgroundColor: "#fff",
             border: "1px solid #ddd",
@@ -128,11 +135,11 @@ const EmailTemplate = ({ contact, onDelete }) => {
 
             {/* Email Content */}
             <div style={{ padding: "20px", lineHeight: "1.6", color: "#333" }}>
-                <p><strong>Name:</strong> {contact.name}</p>
-                <p><strong>Email:</strong> <a href={`mailto:${contact.email}`} style={{ color: "#007bff", textDecoration: "none" }}>{contact.email}</a></p>
-                <p><strong>Phone:</strong> {contact.phoneNo}</p>
-                <p><strong>Interested In:</strong> {contact.interestedIn}</p>
-                <p><strong>Working As:</strong> {contact.WorkingAs}</p>
+                <p><strong>Name:</strong> {contact?.name}</p>
+                <p><strong>Email:</strong> <a href={`mailto:${contact?.email}`} style={{ color: "#007bff", textDecoration: "none" }}>{contact?.email}</a></p>
+                <p><strong>Phone:</strong> {contact?.phoneNo}</p>
+                <p><strong>Interested In:</strong> {contact?.interestedIn}</p>
+                <p><strong>Working As:</strong> {contact?.WorkingAs}</p>
                 <p><strong>Message:</strong></p>
                 <blockquote style={{
                     backgroundColor: "#f8f9fa",
@@ -141,22 +148,13 @@ const EmailTemplate = ({ contact, onDelete }) => {
                     fontStyle: "italic",
                     margin: "10px 0"
                 }}>
-                    {contact.message}
+                    {contact?.message}
                 </blockquote>
-                <p><strong>Date:</strong> {new Date(contact.createdAt).toLocaleString()}</p>
+                <p><strong>Date:</strong> {new Date(contact?.createdAt).toLocaleString()}</p>
             </div>
 
             {/* Footer */}
-            <div style={{
-                backgroundColor: "#f1f1f1",
-                color: "#555",
-                padding: "10px 20px",
-                fontSize: "12px",
-                textAlign: "center",
-                borderTop: "1px solid #ddd"
-            }}>
-                This is an automated message. Please do not reply.
-            </div>
+           
 
             {/* Delete Confirmation Modal */}
             {showModal && (
