@@ -46,19 +46,19 @@ const JoinRequest = () => {
         <>
          
 
-            <section className="section-show"  style={{ height: "100vh"   , width: isSidebarOpen ? "calc(100vw - 250px)" : "100vw", }}>
+            <section className="section-show py-0"  style={{ height: "100vh"   , width: isSidebarOpen ? "calc(100vw - 250px)" : "100vw", }}>
                 <div className="container">
                     <div className="section-title">
                         <h2>DASHBOARD</h2>
-                        <p>WELCOME TO CONTACT US MESSAGES</p>
+                        <p className="fs-3 fs-md-2">WELCOME TO CONTACT US MESSAGES</p>
                     </div>
-                    <div className="admin-dashboard mt-5">
+                    <div className="admin-dashboard">
                         {loading ? (
                             <p>Loading...</p>
                         ) : entries.length > 0 ? (
                             <div className="row g-4">
                                 {entries.map((user) => (
-                                    <div key={user._id} className="col-md-6  align-items-stretch">
+                                    <div key={user._id} className="col-md-6 col-12 align-items-stretch">
                                         <EmailTemplate contact={user} onDelete={handleDelete} />
                                     </div>
                                 ))}
