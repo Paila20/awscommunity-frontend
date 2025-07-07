@@ -7,7 +7,6 @@ import { useBlog } from "../context/BlogContext";
 import EmailTemplate from "../components/EmailTemplate";
 import { handleSuccess, handleError } from '../utils';
 import { useOutletContext } from "react-router-dom";
-import Navbar from "./Navbar";
 import axios from "axios";
 
 const JoinRequest = () => {
