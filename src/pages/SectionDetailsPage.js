@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSection } from "../context/SectionContext";
 import Navbar from "./Navbar";
@@ -15,6 +15,7 @@ const SectionDetailsPage = () => {
 
    useEffect(() => {
     fetchAllEntries();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
