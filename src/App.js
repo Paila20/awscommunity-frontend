@@ -4,7 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login';
 import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
+import joinrequest from './pages/JoinRequest';
 
 import Team from "./pages/Team";
 import Events from "./pages/Events";
@@ -28,6 +28,8 @@ import TeamForm from './pages/TeamForm';
 import EventsForm from './pages/EventForm';
 import { useHome } from './context/HomeContext';
 import HomeEdit from './pages/HomeEdit';
+import EmailTemplate from './components/EmailTemplate';
+import JoinRequest from './pages/JoinRequest';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
@@ -79,7 +81,7 @@ function App() {
                 {/* Public Routes */}
                 <Route path='/admin' element={<Login />} />
                 <Route path='/home' element={<Home />} />
-                <Route path='/dashboard' element={<Dashboard />} />
+                {/* <Route path='/dashboard' element={<Dashboard />} /> */}
                
                 <Route path='/team' element={<Team />} />
                 <Route path='/events' element={<Events />} />
@@ -107,6 +109,7 @@ function App() {
                   <Route path="/admin/admindashboard/team/edit/:id" element={<TeamForm />} />
                   <Route path="/admin/admindashboard/event/new" element={<EventsForm />} />
                   <Route path="/admin/admindashboard/event/edit/:id" element={<EventsForm />} />
+                  <Route path="/admin/admindashboard/joinrequest" element={<JoinRequest />} />
                 </Route>
               
               </Routes>
