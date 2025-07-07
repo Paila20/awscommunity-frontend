@@ -50,7 +50,7 @@ const AdminLayout = () => {
       <nav className="navbar navbar-expand-lg header-top position-fixed w-100 text-white " style={{ zIndex: 9999, top: 0 }}>
         <div className="container-fluid d-flex align-items-center justify-content-between">
           {/* Logo */}
-          <img src={logo} alt="logo" style={{ width: "100px", height: "auto" }} />
+          <img src={logo} alt="logo" style={{ width: "100px", height: "auto" ,marginLeft: "30px"}} />
 
           {/* Right content */}
           <div className="d-flex align-items-center gap-3">
@@ -77,7 +77,7 @@ const AdminLayout = () => {
   </button>
 ) : (
   // Left aligned for large screens
-  <div className="position-absolute" style={{ left: "220px", top: "50%", transform: "translateY(-50%)" }}>
+  <div className="position-absolute" style={{ left: "1px" }}>
     <button className="btn text-white" onClick={toggleSidebar} aria-label="Toggle sidebar">
       <FiMenu size={24} />
     </button>
@@ -109,6 +109,7 @@ const AdminLayout = () => {
           <li className="py-2"><Link to="/admin/admindashboard/sections" className="text-decoration-none" onClick={() => setIsSidebarOpen(false)}>Sections</Link></li>
           <li className="py-2"><Link to="/admin/admindashboard/team" className="text-decoration-none" onClick={() => setIsSidebarOpen(false)}>Team</Link></li>
           <li className="py-2"><Link to="/admin/admindashboard/events" className="text-decoration-none" onClick={() => setIsSidebarOpen(false)}>Events</Link></li>
+           <li className="py-2"><Link to="/admin/admindashboard/joinrequest" className="text-decoration-none" onClick={() => setIsSidebarOpen(false)}>JoinUs</Link></li>
         </ul>
       </div>
 
