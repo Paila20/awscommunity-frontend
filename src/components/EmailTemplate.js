@@ -1,98 +1,15 @@
 
 
-// import React from "react";
-// import { FaTrash } from "react-icons/fa";
-
-// const EmailTemplate = ({ contact, onDelete }) => {
-//     return (
-//         <div style={{
-//             fontFamily: "'Arial', sans-serif",
-//             maxWidth: "600px",
-//             margin: "auto",
-//             backgroundColor: "#fff",
-//             border: "1px solid #ddd",
-//             borderRadius: "8px",
-//             boxShadow: "0px 2px 10px rgba(0,0,0,0.1)",
-//             overflow: "hidden"
-//         }}>
-//             {/* Header with title and delete button aligned */}
-//             <div style={{
-//                 backgroundColor: "#007bff",
-//                 color: "#fff",
-//                 padding: "15px 20px",
-//                 fontSize: "18px",
-//                 fontWeight: "bold",
-//                 display: "flex",
-//                 justifyContent: "space-between",
-//                 alignItems: "center"
-//             }}>
-//                 📩 Membership Request
-//                 <button
-//                     onClick={() => onDelete(contact._id)}
-//                     style={{
-//                         border: "none",
-//                         backgroundColor: "transparent",
-//                         cursor: "pointer",
-//                         fontSize: "18px",
-//                         color: "#dc3545",
-//                     }}
-//                     title="Delete Request"
-//                 >
-//                     <FaTrash />
-//                 </button>
-//             </div>
-
-//             {/* Email Content */}
-//             <div style={{ padding: "20px", lineHeight: "1.6", color: "#333" }}>
-//                 <p><strong>Name:</strong> {contact.name}</p>
-//                 <p><strong>Email:</strong> <a href={`mailto:${contact.email}`} style={{ color: "#007bff", textDecoration: "none" }}>{contact.email}</a></p>
-//                 <p><strong>Phone:</strong> {contact.phoneNo}</p>
-//                 <p><strong>Interested In:</strong> {contact.interestedIn}</p>
-//                 <p><strong>Working As:</strong> {contact.WorkingAs}</p>
-//                 <p><strong>Message:</strong></p>
-//                 <blockquote style={{
-//                     backgroundColor: "#f8f9fa",
-//                     padding: "10px",
-//                     borderLeft: "5px solid #007bff",
-//                     fontStyle: "italic",
-//                     margin: "10px 0"
-//                 }}>
-//                     {contact.message}
-//                 </blockquote>
-//                 <p><strong>Date:</strong> {new Date(contact.createdAt).toLocaleString()}</p>
-//             </div>
-
-//             {/* Footer */}
-//             <div style={{
-//                 backgroundColor: "#f1f1f1",
-//                 color: "#555",
-//                 padding: "10px 20px",
-//                 fontSize: "12px",
-//                 textAlign: "center",
-//                 borderTop: "1px solid #ddd"
-//             }}>
-//                 This is an automated message. Please do not reply.
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default EmailTemplate;
 
 
-import React, { useState,useEffect } from "react";
+import  { useState} from "react";
 import { FaTrash } from "react-icons/fa";
-// import { useBlog } from "../context/BlogContext";
+
 
 const EmailTemplate = ({ contact, onDelete }) => {
     const [showModal, setShowModal] = useState(false);
-    // const {fetchAllEntries} = useBlog()
-    
-
-//      useEffect(() => {
-//     fetchAllEntries();
-//   }, []);
-
+  
+ 
     const handleDelete = () => {
         onDelete(contact._id);
         setShowModal(false);
