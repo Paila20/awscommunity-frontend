@@ -9,9 +9,13 @@ import { useBlog } from "../context/BlogContext";
 const SectionDetailsPage = () => {
   const { id } = useParams();
   const { sections } = useSection();
-  const { submitContactForm} = useBlog();
+  const { submitContactForm, fetchAllEntries} = useBlog();
   const [section, setSection] = useState(null);
   const role = localStorage.getItem("role")
+
+   useEffect(() => {
+    fetchAllEntries();
+  }, []);
 
   useEffect(() => {
     const selectedSection = sections.find((sec) => sec._id === id);
