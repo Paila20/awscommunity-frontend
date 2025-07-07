@@ -18,7 +18,7 @@ const EmailTemplate = ({ contact, onDelete }) => {
     return (
         <div style={{
             fontFamily: "'Arial', sans-serif",
-            maxWidth: "500px",
+            maxWidth: "600px",
             margin: "auto",
             backgroundColor: "#fff",
             border: "1px solid #ddd",
