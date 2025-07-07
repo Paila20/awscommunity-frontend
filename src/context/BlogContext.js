@@ -57,7 +57,7 @@ const submitContactForm = async (formData) => {
         });
         console.log("Fetched Entries:", response.data);
         setEntries(response.data);
-        handleSuccess("Entries fetched successfully");
+        // handleSuccess("Entries fetched successfully");
     } catch (error) {
         console.error("Fetch Entries Error:", error);
         handleError("Failed to fetch entries");
