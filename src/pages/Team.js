@@ -289,7 +289,9 @@ import { useOutletContext } from "react-router-dom";
 
 const Team = () => {
   const { team, fetchTeam, deleteTeamMember, loading } = useTeam();
-  const { isSidebarOpen } = useOutletContext();
+ 
+  const { isSidebarOpen = false } = useOutletContext() || {};
+
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
   
