@@ -4,7 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login';
 import Home from './pages/Home';
-import joinrequest from './pages/JoinRequest';
+
 
 import Team from "./pages/Team";
 import Events from "./pages/Events";
@@ -28,7 +28,7 @@ import TeamForm from './pages/TeamForm';
 import EventsForm from './pages/EventForm';
 import { useHome } from './context/HomeContext';
 import HomeEdit from './pages/HomeEdit';
-import EmailTemplate from './components/EmailTemplate';
+
 import JoinRequest from './pages/JoinRequest';
 
 function App() {
