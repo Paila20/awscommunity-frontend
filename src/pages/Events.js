@@ -21,7 +21,9 @@ const EventsPage = () => {
   const [allEvents, setAllEvents] = useState([]); // Store all events initially
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
-   const { isSidebarOpen } = useOutletContext();
+
+  const { isSidebarOpen = false } = useOutletContext() || {};
+
   const navigate = useNavigate();
   const role = localStorage.getItem("role");
   
