@@ -23,6 +23,19 @@ body {
   margin: 0;
   padding: 0;
 }
+/* Default TinyMCE dialog styling */
+.tox-dialog {
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Adjust width when sidebar is open */
+body.sidebar-open .tox-dialog {
+  width: calc(100vw - 250px) !important;
+  max-width: calc(100vw - 250px) !important;
+  margin-left: 250px !important;
+}
+
 .modal {
   display: block !important;
   opacity: 1 !important;
