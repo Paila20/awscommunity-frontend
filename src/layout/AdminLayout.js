@@ -142,6 +142,10 @@ const AdminLayout = () => {
   useEffect(() => {
     setIsDropdownOpen(false); // Close dropdown on route change
   }, [location.pathname]);
+  
+ useEffect(() => {
+  document.body.classList.toggle("sidebar-open", isSidebarOpen && !isMobile);
+}, [isSidebarOpen, isMobile]);
 
   useEffect(() => {
     const handleResize = () => {
