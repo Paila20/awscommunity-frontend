@@ -46,7 +46,7 @@ const submitContactForm = async (formData) => {
 
     if (!token) {
         console.error("No token found");
-        handleError("Unauthorized: No token found");
+        // handleError("Unauthorized: No token found");
         setLoading(false);
         return;
     }
