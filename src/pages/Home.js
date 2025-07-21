@@ -12,17 +12,10 @@ import DOMPurify from "dompurify";
 const Home = () => {
     const { homeData } = useHome();
   const [isToggled, setIsToggled] = useState(false);
-  // const [isLoaded, setIsLoaded] = useState(false);
+
 
   const { sections, fetchSections, loading } = useSection(); 
-  // const role = localStorage.getItem("role")
-  // useEffect(() => {
-  //   if (homeData?.logo) {
-  //     const img = new Image();
-  //     img.src = homeData.logo;
-  //     img.onload = () => setIsLoaded(true);
-  //   }
-  // }, [homeData]);
+ 
 
    useEffect(() => {
       fetchSections();
@@ -35,16 +28,28 @@ const Home = () => {
     setIsToggled(!isToggled);
   };
 
-   if (loading || !homeData) return (
-    <div  className="d-flex justify-content-center align-items-center"
-      style={{ height: "100vh"   , width: "100vw" }}>
-      <p className="">Loading...</p> 
-    </div>
+  //  if (loading || !homeData) return (
+  //   <div  className="d-flex justify-content-center align-items-center"
+  //     style={{ height: "100vh"   , width: "100vw" }}>
+  //     <p className="">Loading...</p> 
+  //   </div>
      
  
-  )
+  // )
 
-  // if (!isLoaded) return null;
+if (loading || !homeData) {
+  return (
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{ height: "100vh", width: "100vw" }} // Sky blue
+    >
+      <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  );
+}
+
 
   return (
     <div
@@ -55,15 +60,7 @@ const Home = () => {
       backgroundPosition: "center",
     }}
     
-    // className="position-relative bg-cover bg-no-repeat" style={{
-    //   backgroundImage: `url(${homeData?.banner})`,
-    //   backgroundSize: "cover",
-    //   backgroundPosition: "center",
-    //   backgroundRepeat: "no-repeat",
-    //   minHeight: "100vh", 
-      
-    //   width: "100%",
-    // }}
+    
     >
       {/* Header Section */}
       <header className="header text-center text-lg-start gap-3">
@@ -114,12 +111,7 @@ const Home = () => {
 
                   {sections?.slice(0, 2).map((section) => (
     <li key={section._id} className="nav-item cursor-pointer">
-      {/* <span
-        className="nav-link text-white fs-6 px-0 mx-3"
-        onClick={() => navigate(`/sections/details/${section._id}`)}
-      >
-        {section.name}
-      </span> */}
+    
        <NavLink
                         to={`/sections/details/${section._id}`}
                         className="nav-link text-white fs-6 px-0 mx-3"

@@ -38,7 +38,10 @@ const JoinRequest = () => {
    if (loading) return (
     <div  className="d-flex justify-content-center align-items-center"
       style={{ height: "100vh"   , width: isSidebarOpen ? "calc(100vw - 250px)" : "100vw", }}>
-      <p className="">Loading...</p> 
+      {/* <p className="">Loading...</p>  */}
+      <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
     </div>
    )
 
@@ -47,7 +50,7 @@ const JoinRequest = () => {
          
 
             <section className="section-show py-0"  style={{ height: "100vh"   , width: isSidebarOpen ? "calc(100vw - 250px)" : "100vw", }}>
-                <div className="container">
+                <div className="container px-1 py-3">
                     <div className="section-title">
                         <h2>DASHBOARD</h2>
                         <p className="fs-3 fs-md-2">WELCOME TO CONTACT US MESSAGES</p>
