@@ -10,11 +10,11 @@ import DOMPurify from "dompurify";
 
 
 const Home = () => {
-    const { homeData={} } = useHome();
+    const { homeData } = useHome();
   const [isToggled, setIsToggled] = useState(false);
   // const [isLoaded, setIsLoaded] = useState(false);
 
-  const { sections=[], fetchSections } = useSection(); 
+  const { sections, fetchSections, loading } = useSection(); 
   // const role = localStorage.getItem("role")
   // useEffect(() => {
   //   if (homeData?.logo) {
@@ -34,6 +34,15 @@ const Home = () => {
   const toggleNavbar = () => {
     setIsToggled(!isToggled);
   };
+
+   if (loading || !homeData) return (
+    <div  className="d-flex justify-content-center align-items-center"
+      style={{ height: "100vh"   , width: "100vw" }}>
+      <p className="">Loading...</p> 
+    </div>
+     
+ 
+  )
 
   // if (!isLoaded) return null;
 

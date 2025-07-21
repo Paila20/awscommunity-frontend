@@ -75,7 +75,7 @@ const Home = () => {
             {/* {homeData.description} */}
              <h2 className="fs-4 fs-md-3"
                             
-                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(homeData?.description) }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(homeData?.description) }}
                           />
 
           

@@ -58,7 +58,7 @@ const JoinRequest = () => {
                         ) : entries.length > 0 ? (
                             <div className="row g-4">
                                 {entries.map((user) => (
-                                    <div key={user._id} className="col-md-6 col-12 align-items-stretch">
+                                    <div key={user._id} className="col-lg-4 col-md-6  align-items-stretch ">
                                         <EmailTemplate contact={user} onDelete={handleDelete} />
                                     </div>
                                 ))}
